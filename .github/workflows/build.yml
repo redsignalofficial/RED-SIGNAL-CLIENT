@@ -73,7 +73,33 @@ jobs:
               for i in range(6):
                   z_out.writestr(f'assets/minecraft/textures/gui/title/background/panorama_{i}.png', pano_bytes)
 
-          print('Fabric mod jar created successfully with custom panorama background!')
+              # Inject dark sleek button style
+              import zlib, struct
+              def create_button_png(bg_color, border_color, w=200, h=20):
+                  raw = bytearray()
+                  for y in range(h):
+                      raw.append(0)
+                      for x in range(w):
+                          is_border = (x == 0 or x == w - 1 or y == 0 or y == h - 1)
+                          is_inner = (x == 1 or x == w - 2 or y == 1 or y == h - 2)
+                          if is_border: raw.extend(border_color)
+                          elif is_inner: raw.extend([(b + c)//2 for b, c in zip(bg_color, border_color)])
+                          else: raw.extend(bg_color)
+                  def chunk(tag, data): return struct.pack('>I', len(data)) + tag + data + struct.pack('>I', zlib.crc32(tag + data) & 0xffffffff)
+                  png = b'\x89PNG\r\n\x1a\n' + chunk(b'IHDR', struct.pack('>IIBBBBB', w, h, 8, 6, 0, 0, 0)) + chunk(b'IDAT', zlib.compress(bytes(raw), 9)) + chunk(b'IEND', b'')
+                  return png
+
+              btn_normal = create_button_png([16, 19, 25, 215], [108, 124, 255, 140])
+              btn_hover = create_button_png([28, 32, 45, 240], [255, 60, 100, 240])
+              btn_meta = b'{\"gui\":{\"scaling\":{\"type\":\"nine_slice\",\"width\":200,\"height\":20,\"border\":3}}}'
+
+              z_out.writestr('assets/minecraft/textures/gui/sprites/widget/button.png', btn_normal)
+              z_out.writestr('assets/minecraft/textures/gui/sprites/widget/button.png.mcmeta', btn_meta)
+              z_out.writestr('assets/minecraft/textures/gui/sprites/widget/button_highlighted.png', btn_hover)
+              z_out.writestr('assets/minecraft/textures/gui/sprites/widget/button_highlighted.png.mcmeta', btn_meta)
+              z_out.writestr('assets/minecraft/texts/splashes.txt', b'Exclusive Minecraft Crash/Exploit Client\n')
+
+          print('Fabric mod jar created successfully with custom panorama background and sleek UI style!')
           "
 
       - name: Upload build artifact
