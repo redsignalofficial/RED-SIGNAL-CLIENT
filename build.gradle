@@ -1,0 +1,117 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+group = 'us.rin'
+version = '6.4'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.opencollab.dev/main/' }
+    maven { url 'https://repo.viaversion.com/' }
+    maven { url 'https://libraries.minecraft.net/' }
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    // Minecraft & Mojang
+    compileOnly 'com.mojang:authlib:4.0.43'
+    compileOnly 'com.mojang:brigadier:1.1.8'
+    compileOnly 'com.mojang:datafixerupper:6.0.8'
+    compileOnly 'com.mojang:logging:1.1.1'
+
+    // Netty
+    compileOnly 'io.netty:netty-all:4.1.97.Final'
+
+    // Google
+    compileOnly 'com.google.guava:guava:32.1.2-jre'
+    compileOnly 'com.google.code.gson:gson:2.10.1'
+
+    // Apache Commons
+    compileOnly 'org.apache.commons:commons-lang3:3.13.0'
+    compileOnly 'commons-io:commons-io:2.13.0'
+    compileOnly 'org.apache.commons:commons-compress:1.24.0'
+    compileOnly 'org.apache.httpcomponents:httpclient:4.5.14'
+
+    // Logging
+    compileOnly 'org.apache.logging.log4j:log4j-api:2.20.0'
+    compileOnly 'org.apache.logging.log4j:log4j-core:2.20.0'
+    compileOnly 'org.slf4j:slf4j-api:2.0.9'
+
+    // LWJGL
+    compileOnly 'org.lwjgl:lwjgl:3.3.2'
+    compileOnly 'org.lwjgl:lwjgl-glfw:3.3.2'
+    compileOnly 'org.lwjgl:lwjgl-opengl:3.3.2'
+    compileOnly 'org.lwjgl:lwjgl-openal:3.3.2'
+    compileOnly 'org.lwjgl:lwjgl-stb:3.3.2'
+    compileOnly 'org.lwjgl:lwjgl-tinyfd:3.3.2'
+
+    // JOML
+    compileOnly 'org.joml:joml:1.10.5'
+
+    // FastUtil
+    compileOnly 'it.unimi.dsi:fastutil:8.5.12'
+
+    // JNA
+    compileOnly 'net.java.dev.jna:jna:5.13.0'
+    compileOnly 'net.java.dev.jna:jna-platform:5.13.0'
+
+    // ViaVersion
+    compileOnly 'com.viaversion:viaversion-api:4.9.2'
+    compileOnly 'com.viaversion:viaversion:4.9.2'
+    compileOnly 'com.viaversion:viabackwards-api:4.9.1'
+    compileOnly 'com.viaversion:viabackwards:4.9.1'
+    compileOnly 'com.viaversion:viarewind-api:3.0.5'
+
+    // MCProtocolLib (steveice10)
+    compileOnly 'com.github.GeyserMC:MCProtocolLib:1.20.4-2-SNAPSHOT'
+
+    // Adventure (Kyori)
+    compileOnly 'net.kyori:adventure-api:4.14.0'
+    compileOnly 'net.kyori:adventure-text-minimessage:4.14.0'
+    compileOnly 'net.kyori:adventure-text-serializer-gson:4.14.0'
+
+    // CloudburstMC Math
+    compileOnly 'org.cloudburstmc.math:api:2.0'
+    compileOnly 'org.cloudburstmc.math:immutable:2.0'
+
+    // Discord RPC
+    compileOnly 'com.github.Vatuu:discord-rpc:1.6.2'
+
+    // Microsoft Auth
+    compileOnly 'com.github.Litarvan:OpenAuth:1.1.6'
+
+    // ICU4J
+    compileOnly 'com.ibm.icu:icu4j:73.2'
+
+    // JOpt Simple
+    compileOnly 'net.sf.jopt-simple:jopt-simple:5.0.4'
+
+    // Oshi (system info)
+    compileOnly 'com.github.oshi:oshi-core:6.4.6'
+
+    // Annotations
+    compileOnly 'org.jetbrains:annotations:24.0.1'
+    compileOnly 'org.checkerframework:checker-qual:3.37.0'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    options.compilerArgs << '-Xlint:none'
+}
+
+jar {
+    manifest {
+        attributes(
+            'Main-Class': 'net.minecraft.client.main.Main',
+            'Implementation-Title': 'RED-SIGNAL-CLIENT',
+            'Implementation-Version': version
+        )
+    }
+}
