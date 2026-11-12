@@ -65,32 +65,34 @@ dependencies {
     compileOnly 'net.java.dev.jna:jna-platform:5.13.0'
 
     // ViaVersion (supports 1.21+ and 26.1.2)
-    compileOnly 'com.viaversion:viaversion-api:5.12.2'
-    compileOnly 'com.viaversion:viaversion:5.12.2'
-    compileOnly 'com.viaversion:viabackwards-common:5.12.2'
-    compileOnly 'com.viaversion:viabackwards:5.12.2'
-    compileOnly 'com.viaversion:viarewind-common:4.2.0'
+    implementation 'com.viaversion:viaversion-api:5.12.2'
+    implementation 'com.viaversion:viaversion:5.12.2'
+    implementation 'com.viaversion:viabackwards-common:5.12.2'
+    implementation 'com.viaversion:viabackwards:5.12.2'
+    implementation 'com.viaversion:viarewind-common:4.2.0'
+    implementation 'com.viaversion:viarewind:4.2.0'
 
     // MCProtocolLib (steveice10)
-    compileOnly('com.github.steveice10:MCProtocolLib:1.20-1') {
+    implementation('com.github.steveice10:MCProtocolLib:1.20-1') {
         exclude group: 'com.nukkitx.fastutil'
         exclude group: 'io.netty.incubator'
     }
 
     // Adventure (Kyori)
-    compileOnly 'net.kyori:adventure-api:4.14.0'
-    compileOnly 'net.kyori:adventure-text-minimessage:4.14.0'
-    compileOnly 'net.kyori:adventure-text-serializer-gson:4.14.0'
+    implementation 'net.kyori:adventure-api:4.14.0'
+    implementation 'net.kyori:adventure-key:4.14.0'
+    implementation 'net.kyori:adventure-text-minimessage:4.14.0'
+    implementation 'net.kyori:adventure-text-serializer-gson:4.14.0'
 
     // CloudburstMC Math
-    compileOnly 'org.cloudburstmc.math:api:2.0'
-    compileOnly 'org.cloudburstmc.math:immutable:2.0'
+    implementation 'org.cloudburstmc.math:api:2.0'
+    implementation 'org.cloudburstmc.math:immutable:2.0'
 
     // Discord RPC
-    compileOnly 'com.github.Vatuu:discord-rpc:1.6.2'
+    implementation 'com.github.Vatuu:discord-rpc:1.6.2'
 
     // Microsoft Auth
-    compileOnly 'com.github.Litarvan:OpenAuth:1.1.6'
+    implementation 'com.github.Litarvan:OpenAuth:1.1.6'
 
     // ICU4J
     compileOnly 'com.ibm.icu:icu4j:73.2'
@@ -127,3 +129,16 @@ jar {
         )
     }
 }
+
+shadowJar {
+    archiveClassifier.set('')
+    manifest {
+        attributes(
+            'Main-Class': 'net.minecraft.client.main.Main',
+            'Implementation-Title': 'RED-SIGNAL-CLIENT',
+            'Implementation-Version': version
+        )
+    }
+}
+
+build.dependsOn shadowJar
