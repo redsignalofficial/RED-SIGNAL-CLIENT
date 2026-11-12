@@ -75,7 +75,7 @@ public class Spectre3 implements Crasher {
                 CompoundTag pageNbtBuilder = new CompoundTag();
 
                 for (int i = 0; i < size; ++i)
-                    pageNbtBuilder.putString(String.valueOf(i), getRed SignalLabel());
+                    pageNbtBuilder.putString(String.valueOf(i), getRedSignalLabel());
 
                 page = new Filterable<>(pageNbtBuilder, null);
             }
@@ -83,7 +83,7 @@ public class Spectre3 implements Crasher {
                 ListTag listTag = new ListTag();
 
                 for (int i = 0; i < size; ++i)
-                    listTag.add(i, new StringTag(getRed SignalLabel()));
+                    listTag.add(i, new StringTag(getRedSignalLabel()));
 
                 page = new Filterable<>(listTag, null);
             }
@@ -91,7 +91,7 @@ public class Spectre3 implements Crasher {
         return page;
     }
 
-    private String getRed SignalLabel(){
+    private String getRedSignalLabel(){
         return """
                         \s
                         \s

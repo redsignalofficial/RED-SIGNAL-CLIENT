@@ -71,7 +71,7 @@ public class TitleScreen extends Screen {
       this(false);
    }
 
-   private void initRed SignalUI() {
+   private void initRedSignalUI() {
       this.redSignalOpenTimeMs = Util.getMillis();
       this.changelogOpen = false;
       this.changelogScroll = 0;
@@ -273,7 +273,7 @@ public class TitleScreen extends Screen {
 
    protected void init() {
       this.clearWidgets();
-      this.initRed SignalUI();
+      this.initRedSignalUI();
       this.minecraft.setConnectedToRealms(false);
       if (this.realmsNotificationsScreen == null) {
          this.realmsNotificationsScreen = new RealmsNotificationsScreen();
@@ -301,10 +301,10 @@ public class TitleScreen extends Screen {
    }
 
    public void render(GuiGraphics p_282860_, int p_281753_, int p_283539_, float p_282628_) {
-      this.renderRed SignalUI(p_282860_, p_281753_, p_283539_, p_282628_);
+      this.renderRedSignalUI(p_282860_, p_281753_, p_283539_, p_282628_);
    }
 
-   private void renderRed SignalUI(GuiGraphics g, int mouseX, int mouseY, float partialTick) {
+   private void renderRedSignalUI(GuiGraphics g, int mouseX, int mouseY, float partialTick) {
       if (this.redSignalOpenTimeMs == 0L) {
          this.redSignalOpenTimeMs = Util.getMillis();
       }

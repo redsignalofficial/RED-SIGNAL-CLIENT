@@ -43,7 +43,7 @@ public class ClickGui extends Screen {
     public static boolean IS_VISIBLE = true;
     public static ColorTheme COLOR_THEME = ColorTheme.PINK;
     public static HudPlace HUD_PLACE = HudPlace.LEFT;
-    public static ClientStyle CLIENT_STYLE = ClientStyle.RED SIGNAL;
+    public static ClientStyle CLIENT_STYLE = ClientStyle.RED_SIGNAL;
     public static Section LAST_SELECTED_SECTION = null;
     public static boolean LAST_EDITING_OPEN = false;
     public static ModuleEditComponent.EditorState LAST_EDITOR_STATE = null;
@@ -602,5 +602,5 @@ public class ClickGui extends Screen {
 
     public enum HudPlace {LEFT, RIGHT, HIDE}
 
-    public enum ClientStyle {MINECRAFT, RED SIGNAL}
+    public enum ClientStyle {MINECRAFT, RED_SIGNAL}
 }

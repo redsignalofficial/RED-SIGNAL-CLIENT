@@ -167,7 +167,7 @@ public class ConnectScreen extends Screen {
 
    private void addConnectionStep(String step) {
       String coloredStep;
-      if (ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.RED SIGNAL) {
+      if (ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.RED_SIGNAL) {
          coloredStep = step;
       } else {
          switch (connectionSteps.size()) {
@@ -207,9 +207,9 @@ public class ConnectScreen extends Screen {
       int panelH = Math.min(280, this.height - 120);
       int panelX = (this.width - panelW) / 2;
       int panelY = (this.height - panelH) / 2;
-      int cancelY = ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.RED SIGNAL ? panelY + panelH - 38 : this.height / 4 + 120 + 12;
+      int cancelY = ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.RED_SIGNAL ? panelY + panelH - 38 : this.height / 4 + 120 + 12;
 
-      if (ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.RED SIGNAL) {
+      if (ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.RED_SIGNAL) {
          this.addRenderableWidget((new CustomButton(panelX + (panelW - 220) / 2, cancelY, 220, 24, CommonComponents.GUI_CANCEL, p_289624_ -> {
             this.abortAndReturn();
          })).setRadius(10).setBackground(new Color(16, 19, 25).getRGB(), new Color(16, 19, 25).getRGB()).setBorderColor(new Color(255, 255, 255, 10).getRGB()).setGlow(new Color(108, 124, 255).getRGB(), 46).setText(new Color(230, 234, 242).getRGB(), false, 13));

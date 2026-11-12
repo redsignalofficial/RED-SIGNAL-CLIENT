@@ -111,12 +111,12 @@ public class JoinMultiplayerScreen extends Screen {
          this.lanServerDetector = null;
       }
 
-      int itemH = ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.RED SIGNAL ? 46 : 36;
+      int itemH = ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.RED_SIGNAL ? 46 : 36;
       this.serverSelectionList = new ServerSelectionList(this, this.minecraft, this.width, this.height, 32, this.height - 64, itemH);
       this.serverSelectionList.updateOnlineServers(this.servers);
       this.addWidget(this.serverSelectionList);
 
-      if (ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.RED SIGNAL) {
+      if (ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.RED_SIGNAL) {
          this.redSignalOpenTimeMs = Util.getMillis();
          this.panelW = Math.min(980, this.width - 60);
          this.panelH = this.height - 100;

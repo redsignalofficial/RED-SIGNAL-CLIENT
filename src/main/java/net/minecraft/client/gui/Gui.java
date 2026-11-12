@@ -479,7 +479,7 @@ public class Gui {
 
     private void renderHotbar(float p_283031_, GuiGraphics p_282108_) {
         Player player = this.getCameraPlayer();
-        if (ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.RED SIGNAL) {
+        if (ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.RED_SIGNAL) {
             renderHotBar(p_283031_, p_282108_, player, this.screenWidth, this.screenHeight);
         } else {
             ItemStack itemstack = player.getOffhandItem();

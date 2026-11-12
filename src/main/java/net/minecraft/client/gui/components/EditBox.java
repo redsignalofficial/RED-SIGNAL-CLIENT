@@ -398,7 +398,7 @@ public class EditBox extends AbstractWidget implements Renderable {
             RenderUtils.drawRoundedRectOutline(p_283252_.pose(), x, y, this.width, this.height, radius, 1, outline);
          }
 
-         boolean redSignalStyle = ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.RED SIGNAL && !(Minecraft.getInstance().screen instanceof ChatScreen);
+         boolean redSignalStyle = ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.RED_SIGNAL && !(Minecraft.getInstance().screen instanceof ChatScreen);
          int i2 = this.isEditable ? this.textColor : this.textColorUneditable;
          int j = this.cursorPos - this.displayPos;
          int k = this.highlightPos - this.displayPos;
@@ -479,7 +479,7 @@ public class EditBox extends AbstractWidget implements Renderable {
       }
 
       int highlightColor;
-      if (ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.RED SIGNAL && !(Minecraft.getInstance().screen instanceof ChatScreen)) {
+      if (ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.RED_SIGNAL && !(Minecraft.getInstance().screen instanceof ChatScreen)) {
          Color accent = new Color(ClickGui.getCurrentThemeColor(), true);
          highlightColor = new Color(accent.getRed(), accent.getGreen(), accent.getBlue(), 95).getRGB();
       } else {
