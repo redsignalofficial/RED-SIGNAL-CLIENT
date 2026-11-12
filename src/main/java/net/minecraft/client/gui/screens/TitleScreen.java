@@ -85,28 +85,28 @@ public class TitleScreen extends Screen {
       }
       this.cachedAvatarSkin = initialSkin;
 
-      int panelW = (int) Math.round(this.width * 0.42);
-      int panelH = (int) Math.round(this.height * 0.52);
-      panelW = Mth.clamp(panelW, 320, Math.max(320, this.width - 20));
-      panelH = Mth.clamp(panelH, 320, Math.max(320, this.height - 20));
+      int panelW = Math.min(270, (int) Math.round(this.width * 0.45));
+      panelW = Math.max(220, Math.min(panelW, this.width - 24));
+      int panelH = Math.min(210, (int) Math.round(this.height * 0.76));
+      panelH = Math.max(185, Math.min(panelH, this.height - 24));
 
       this.redSignalPanelW = panelW;
       this.redSignalPanelH = panelH;
       this.redSignalPanelX = (this.width - panelW) / 2;
       this.redSignalPanelY = (this.height - panelH) / 2;
 
-      int pad = 22;
+      int pad = 14;
 
-      int titleSize = 34;
+      int titleSize = 22;
       boolean titleBold = true;
-      int subtitleSize = 11;
+      int subtitleSize = 9;
       boolean subtitleBold = false;
 
-      int headerH = RenderUtils.getCustomFontHeight(titleSize, titleBold) + RenderUtils.getCustomFontHeight(subtitleSize, subtitleBold) + 18;
+      int headerH = RenderUtils.getCustomFontHeight(titleSize, titleBold) + RenderUtils.getCustomFontHeight(subtitleSize, subtitleBold) + 8;
 
-      int btnW = (int) Math.round(panelW * 0.80);
-      int btnH = 40;
-      int btnGap = 14;
+      int btnW = (int) Math.round(panelW * 0.82);
+      int btnH = 24;
+      int btnGap = 6;
       int btnX = this.redSignalPanelX + (panelW - btnW) / 2;
       int firstBtnY = this.redSignalPanelY + pad + headerH;
 
@@ -117,13 +117,13 @@ public class TitleScreen extends Screen {
       CustomButton single = new CustomButton(btnX, firstBtnY, btnW, btnH, Component.translatable("menu.singleplayer"), b -> {
          this.minecraft.setScreen(new SelectWorldScreen(this));
       });
-      single.setRadius(14)
+      single.setRadius(10)
               .setBackground(0xFF101319, 0xFF101319)
               .setBorderColor(0x0AFFFFFF)
-              .setGlow(0xFF6C7CFF, 64)
-              .setText(0xFFE6EAF2, false, 16)
+              .setGlow(0xFF6C7CFF, 48)
+              .setText(0xFFE6EAF2, false, 13)
               .setIcon("👤", CustomButton.IconSide.LEFT)
-              .setIconStyle(0xFFE6EAF2, 14)
+              .setIconStyle(0xFFE6EAF2, 12)
               .setIconScale(1f);
       this.addRenderableWidget(single);
 
@@ -131,13 +131,13 @@ public class TitleScreen extends Screen {
          Screen screen = this.minecraft.options.skipMultiplayerWarning ? new JoinMultiplayerScreen(this) : new SafetyScreen(this);
          this.minecraft.setScreen(screen);
       });
-      multi.setRadius(14)
+      multi.setRadius(10)
               .setBackground(0xFF101319, 0xFF101319)
               .setBorderColor(0x0AFFFFFF)
-              .setGlow(0xFF6C7CFF, 64)
-              .setText(0xFFE6EAF2, false, 16)
+              .setGlow(0xFF6C7CFF, 48)
+              .setText(0xFFE6EAF2, false, 13)
               .setIcon("👥", CustomButton.IconSide.LEFT)
-              .setIconStyle(0xFFE6EAF2, 14)
+              .setIconStyle(0xFFE6EAF2, 12)
               .setIconScale(1f);
       multi.active = allowMulti;
       multi.setTooltip(tooltip);
@@ -146,21 +146,21 @@ public class TitleScreen extends Screen {
       CustomButton realms = new CustomButton(btnX, firstBtnY + (btnH + btnGap) * 2, btnW, btnH, Component.translatable("menu.online"), b -> {
          this.realmsButtonClicked();
       });
-      realms.setRadius(14)
+      realms.setRadius(10)
               .setBackground(0xFF101319, 0xFF101319)
               .setBorderColor(0x0AFFFFFF)
-              .setGlow(0xFF6C7CFF, 64)
-              .setText(0xFFE6EAF2, false, 16)
+              .setGlow(0xFF6C7CFF, 48)
+              .setText(0xFFE6EAF2, false, 13)
               .setIcon("👑", CustomButton.IconSide.LEFT)
-              .setIconStyle(0xFFE6EAF2, 14)
+              .setIconStyle(0xFFE6EAF2, 12)
               .setIconScale(1f);
       realms.active = allowMulti;
       realms.setTooltip(tooltip);
       this.addRenderableWidget(realms);
 
-      int smallH = 28;
-      int smallW = (int) Math.round(panelW * 0.35);
-      int smallGap = 12;
+      int smallH = 20;
+      int smallW = (int) Math.round(panelW * 0.38);
+      int smallGap = 8;
       int smallY = this.redSignalPanelY + panelH - pad - smallH;
       int smallRowW = smallW * 2 + smallGap;
       int smallStartX = this.redSignalPanelX + (panelW - smallRowW) / 2;
@@ -168,24 +168,24 @@ public class TitleScreen extends Screen {
       CustomButton options = new CustomButton(smallStartX, smallY, smallW, smallH, Component.translatable("menu.options"), b -> {
          this.minecraft.setScreen(new OptionsScreen(this, this.minecraft.options));
       });
-      options.setRadius(10)
+      options.setRadius(8)
               .setBackground(0xFF101319, 0xFF101319)
               .setBorderColor(0x0AFFFFFF)
-              .setGlow(0xFF6C7CFF, 42)
-              .setText(0xFFE6EAF2, false, 13);
+              .setGlow(0xFF6C7CFF, 32)
+              .setText(0xFFE6EAF2, false, 11);
       this.addRenderableWidget(options);
 
       CustomButton quit = new CustomButton(smallStartX + smallW + smallGap, smallY, smallW, smallH, Component.translatable("menu.quit"), b -> {
          this.minecraft.stop();
       });
-      quit.setRadius(10)
+      quit.setRadius(8)
               .setBackground(0xFF101319, 0xFF101319)
               .setBorderColor(0x0AFFFFFF)
-              .setGlow(0xFF6C7CFF, 42)
-              .setText(0xFFE6EAF2, false, 13);
+              .setGlow(0xFF6C7CFF, 32)
+              .setText(0xFFE6EAF2, false, 11);
       this.addRenderableWidget(quit);
 
-      int avatarSize = 40;
+      int avatarSize = 26;
       int avatarX = this.redSignalPanelX + panelW - pad - avatarSize;
       int avatarY = this.redSignalPanelY + pad;
 
@@ -326,26 +326,26 @@ public class TitleScreen extends Screen {
       int borderColor = withAlpha(0xFFFFFFFF, (int) (13 * panelAlpha));
       RenderUtils.drawRoundedRectOutline(g.pose(), panelX, panelY, panelW, panelH, radius, 1, borderColor);
 
-      int pad = 16;
+      int pad = 14;
       String title = "RedSignalClient";
-      int titleSize = 34;
+      int titleSize = 22;
       boolean titleBold = true;
-      float titleW = RenderUtils.getCustomStringWidth(title, titleBold, 34);
+      float titleW = RenderUtils.getCustomStringWidth(title, titleBold, titleSize);
       float titleBaseY = panelY + pad;
       float titleX = this.width / 2f - titleW / 2f;
 
       drawTitleGradient(g, title, titleX, titleBaseY, titleW, titleBold, titleSize, panelAlpha);
 
       String subtitle = "Exclusive Minecraft Crash/Exploit Client";
-      int subtitleSize = 10;
+      int subtitleSize = 9;
       float subtitleW = RenderUtils.getCustomStringWidth(subtitle, false, subtitleSize);
       float subtitleBaseY = titleBaseY + RenderUtils.getCustomFontHeight(titleSize, titleBold);
       RenderUtils.drawCustomString(g.pose(), subtitle, this.width / 2f - subtitleW / 2f, subtitleBaseY, withAlpha(0xFF9CA3AF, (int) (255 * panelAlpha)), false, subtitleSize);
 
       String footer = "RedSignalClient (" + RedSignalClient.VERSION + ")";
       String footer2 = "Created by: Rin";
-      RenderUtils.drawCustomString(g.pose(), footer, 12, this.height - 30, withAlpha(0xFF94A3B8, (int) (255 * panelAlpha)), false, 12);
-      RenderUtils.drawCustomString(g.pose(), footer2, 12, this.height - 18, withAlpha(0xFF64748B, (int) (255 * panelAlpha)), false, 12);
+      RenderUtils.drawCustomString(g.pose(), footer, 12, this.height - 24, withAlpha(0xFF94A3B8, (int) (255 * panelAlpha)), false, 10);
+      RenderUtils.drawCustomString(g.pose(), footer2, 12, this.height - 14, withAlpha(0xFF64748B, (int) (255 * panelAlpha)), false, 10);
 
       if (Math.abs(panelAlpha - this.lastPanelAlpha) > 0.001F) {
          this.lastPanelAlpha = panelAlpha;
