@@ -479,7 +479,7 @@ public class Gui {
 
     private void renderHotbar(float p_283031_, GuiGraphics p_282108_) {
         Player player = this.getCameraPlayer();
-        if (ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.XYNIS) {
+        if (ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.RED SIGNAL) {
             renderHotBar(p_283031_, p_282108_, player, this.screenWidth, this.screenHeight);
         } else {
             ItemStack itemstack = player.getOffhandItem();
@@ -578,7 +578,7 @@ public class Gui {
 
         if(!(this.minecraft.screen instanceof ChatScreen)) {
             String nickLabel = "Nick";
-            String nickValue = ClickGui.IS_VISIBLE ? player.getName().getString() : "XynisUser";
+            String nickValue = ClickGui.IS_VISIBLE ? player.getName().getString() : "RedSignalUser";
 
             RenderUtils.drawCustomString(pose, nickLabel, leftX, line1Y, styleColor, false, mainSize);
             leftX += RenderUtils.getCustomStringWidth(nickLabel, false, mainSize);

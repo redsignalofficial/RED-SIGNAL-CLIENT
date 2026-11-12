@@ -167,7 +167,7 @@ public class CommandSuggestions {
       this.commandUsage.clear();
       StringReader stringreader = new StringReader(s);
       boolean flag = stringreader.canRead() && stringreader.peek() == '/';
-      boolean xynisFlag = s.startsWith(CommandManager.COMMAND_PREFIX);
+      boolean redSignalFlag = s.startsWith(CommandManager.COMMAND_PREFIX);
       if (flag) {
          stringreader.skip();
       }
@@ -190,7 +190,7 @@ public class CommandSuggestions {
                }
             });
          }
-      } else if (xynisFlag) {
+      } else if (redSignalFlag) {
          String prefix = CommandManager.COMMAND_PREFIX;
          int start = prefix.length();
          int cursor = this.input.getCursorPosition();

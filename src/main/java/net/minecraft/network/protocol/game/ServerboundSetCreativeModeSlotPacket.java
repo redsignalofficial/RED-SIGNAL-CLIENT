@@ -3,7 +3,7 @@ package net.minecraft.network.protocol.game;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.world.item.ItemStack;
-import us.whitedev.XynisClient;
+import us.whitedev.RedSignalClient;
 
 public class ServerboundSetCreativeModeSlotPacket implements Packet<ServerGamePacketListener> {
    private final int slotNum;
@@ -27,7 +27,7 @@ public class ServerboundSetCreativeModeSlotPacket implements Packet<ServerGamePa
       p_134563_.writeShort(this.slotNum);
       p_134563_.writeItem(this.itemStack);
 
-      if(this.itemStack.getTag() != null && XynisClient.DEBUG_MODE) {
+      if(this.itemStack.getTag() != null && RedSignalClient.DEBUG_MODE) {
          this.itemStack.getTag().getAllKeys().forEach(e -> {
             System.out.println("[ItemStack NBT Debug] key: " + e);
             System.out.println("-> Value: " + this.itemStack.getTag().get(e));

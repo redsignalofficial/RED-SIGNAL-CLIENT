@@ -38,8 +38,8 @@ public class BotCreative1 implements BotCrasher {
         CompoundTag comp = new CompoundTag("tag");
         ListTag list = new ListTag("pages");
         for (int i = 0; i < pages; i++) list.add(new StringTag("page", s.toString()));
-        comp.put(new StringTag("author", "0whitedev"));
-        comp.put(new StringTag("title", "madeq"));
+        comp.put(new StringTag("author", "Rin"));
+        comp.put(new StringTag("title", "Rin"));
         comp.put(new ByteTag("resolver", (byte) 0));
         comp.put(list);
         ItemStack itemstack = new ItemStack(387, 1, comp);

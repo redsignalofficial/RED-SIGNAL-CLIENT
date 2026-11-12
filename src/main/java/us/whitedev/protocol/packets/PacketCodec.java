@@ -3,7 +3,7 @@ package us.whitedev.protocol.packets;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import us.whitedev.helpers.MessageHelper;
-import us.whitedev.protocol.XynisProtocol;
+import us.whitedev.protocol.RedSignalProtocol;
 
 import javax.annotation.Nullable;
 import java.nio.charset.StandardCharsets;
@@ -15,7 +15,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.function.BiConsumer;
 
 public class PacketCodec {
-    private static final XynisProtocol xynisProtocol = new XynisProtocol();
+    private static final RedSignalProtocol redSignalProtocol = new RedSignalProtocol();
     private static final MessageHelper msgHelper = new MessageHelper();
 
     public static void sendPacket(Packet packet, int packetAmount) {
@@ -27,7 +27,7 @@ public class PacketCodec {
             for (int i = 0; i < packetAmount; i++)
                 buffs.add(buf.copy());
 
-            xynisProtocol.addPacketsToSend(buffs);
+            redSignalProtocol.addPacketsToSend(buffs);
         }catch (OutOfMemoryError e){
             final int BATCH_SIZE = 100;
 
@@ -45,7 +45,7 @@ public class PacketCodec {
                         for (int i = 0; i < currentBatchSize; i++)
                             buffs.add(buf2.copy());
 
-                        xynisProtocol.addPacketsToSend(buffs);
+                        redSignalProtocol.addPacketsToSend(buffs);
 
                         if (processed % (BATCH_SIZE * 5) == 0) System.gc();
                     }

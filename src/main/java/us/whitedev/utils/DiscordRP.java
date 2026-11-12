@@ -7,7 +7,7 @@ import net.arikia.dev.drpc.DiscordRichPresence.Builder;
 import net.arikia.dev.drpc.DiscordUser;
 import net.arikia.dev.drpc.callbacks.ReadyCallback;
 import net.minecraft.client.Minecraft;
-import us.whitedev.XynisClient;
+import us.whitedev.RedSignalClient;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 public final class DiscordRP implements ReadyCallback {
     public static boolean rpSwitch = true;
     private static final Minecraft mc = Minecraft.getInstance();
-    DiscordRichPresence richPresence = (new Builder("Client Initialization")).setBigImage("logo", "XynisClient " + XynisClient.VERSION)
+    DiscordRichPresence richPresence = (new Builder("Client Initialization")).setBigImage("logo", "RedSignalClient " + RedSignalClient.VERSION)
             .setDetails("Loading...")
             .setStartTimestamps(System.currentTimeMillis())
             .build();

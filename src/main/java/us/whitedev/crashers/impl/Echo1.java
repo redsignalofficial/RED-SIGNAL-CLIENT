@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 import us.whitedev.crashers.Crasher;
 import us.whitedev.gui.clickgui.ClickGui;
 import us.whitedev.helpers.PacketHelper;
-import us.whitedev.protocol.XynisProtocol;
+import us.whitedev.protocol.RedSignalProtocol;
 import us.whitedev.protocol.components.data.DataComponents;
 import us.whitedev.protocol.components.data.impl.DataBees;
 import us.whitedev.protocol.components.objects.ItemType;
@@ -42,7 +42,7 @@ public class Echo1 implements Crasher {
         msgHelper.sendMessage("Starting crashing with &f" + (ClickGui.IS_VISIBLE ? getName() : "******"), true);
 
         int protocol = ViaLoadingBase.getInstance().getTargetVersion().getVersion();
-        if(XynisProtocol.SUPPORTED_PROTOCOLS.contains(protocol) && type.equals("main2")) {
+        if(RedSignalProtocol.SUPPORTED_PROTOCOLS.contains(protocol) && type.equals("main2")) {
             sendMain2DataPackets(size, protocol, packets);
         }else{
             ItemStack stack;

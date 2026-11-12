@@ -15,7 +15,7 @@ import us.whitedev.crashers.Crasher;
 import us.whitedev.gui.clickgui.ClickGui;
 import us.whitedev.helpers.BypassHelper;
 import us.whitedev.helpers.PacketHelper;
-import us.whitedev.protocol.XynisProtocol;
+import us.whitedev.protocol.RedSignalProtocol;
 import us.whitedev.protocol.components.data.DataComponents;
 import us.whitedev.protocol.components.data.impl.DataCustomName;
 import us.whitedev.protocol.components.data.impl.DataLore;
@@ -45,7 +45,7 @@ public class Vortex1 implements Crasher {
 
         if (!type.equals("unreachable")) {
             int protocol = ViaLoadingBase.getInstance().getTargetVersion().getVersion();
-            if (XynisProtocol.SUPPORTED_PROTOCOLS.contains(protocol)) {
+            if (RedSignalProtocol.SUPPORTED_PROTOCOLS.contains(protocol)) {
                 Int2ObjectMap<us.whitedev.protocol.components.objects.ItemStack> itemMap = new Int2ObjectOpenHashMap<>();
                 us.whitedev.protocol.components.objects.ItemStack itemStack = new us.whitedev.protocol.components.objects.ItemStack(1, 1, getDataComponents(type, power));
 
@@ -63,7 +63,7 @@ public class Vortex1 implements Crasher {
                 PacketHelper.send(new ServerboundContainerClickPacket(0, 0, 1, 1, ClickType.PICKUP, itemStack, itemMap));
             }
         } else {
-            PacketHelper.send(new ServerboundCommandSuggestionPacket(0, "xynis"));
+            PacketHelper.send(new ServerboundCommandSuggestionPacket(0, "redsignal"));
         }
 
         setEnabled(false);

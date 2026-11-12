@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class ConfigHelper {
-    private final String filePath = (System.getenv("APPDATA") != null ? System.getenv("APPDATA") : System.getProperty("user.dir")) + "/.minecraft/ConfigXynisList.ser";
+    private final String filePath = (System.getenv("APPDATA") != null ? System.getenv("APPDATA") : System.getProperty("user.dir")) + "/.minecraft/ConfigRed SignalList.ser";
 
     public static final Map<String, String[]> loadedConfigs = new HashMap<>();
     private static final List<BypassListUtil> customBypassList = new ArrayList<>();

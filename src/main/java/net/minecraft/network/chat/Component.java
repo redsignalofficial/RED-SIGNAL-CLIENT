@@ -140,14 +140,14 @@ public interface Component extends Message, FormattedText {
       if (p_130675_ == null) return CommonComponents.EMPTY;
 
       if (!ClickGui.IS_VISIBLE && p_130675_.contains(Minecraft.getInstance().getUser().getName())) {
-         p_130675_ = p_130675_.replace(Minecraft.getInstance().getUser().getName(), "XynisUser");
+         p_130675_ = p_130675_.replace(Minecraft.getInstance().getUser().getName(), "RedSignalUser");
       }
       return literal(p_130675_);
    }
 
    static MutableComponent literal(String p_237114_) {
       if (!ClickGui.IS_VISIBLE && p_237114_.contains(Minecraft.getInstance().getUser().getName())) {
-         p_237114_ = p_237114_.replace(Minecraft.getInstance().getUser().getName(), "XynisUser");
+         p_237114_ = p_237114_.replace(Minecraft.getInstance().getUser().getName(), "RedSignalUser");
       }
       return MutableComponent.create(new LiteralContents(p_237114_));
    }

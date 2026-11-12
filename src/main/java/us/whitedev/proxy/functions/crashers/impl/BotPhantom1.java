@@ -92,7 +92,7 @@ public class BotPhantom1 implements BotCrasher {
                 return new ServerboundContainerClickPacket(0, 0, 1, ContainerActionType.CLICK_ITEM, DropItemAction.DROP_SELECTED_STACK, itemStack, itemMap);
             }
             case "unreachable" -> {
-                return new ServerboundCommandSuggestionPacket(0, "xynis");
+                return new ServerboundCommandSuggestionPacket(0, "redsignal");
             }
         }
         return null;

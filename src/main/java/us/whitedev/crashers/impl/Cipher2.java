@@ -4,7 +4,7 @@ import de.florianmichael.vialoadingbase.ViaLoadingBase;
 import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
 import us.whitedev.crashers.Crasher;
 import us.whitedev.gui.clickgui.ClickGui;
-import us.whitedev.protocol.XynisProtocol;
+import us.whitedev.protocol.RedSignalProtocol;
 import us.whitedev.protocol.components.data.DataComponents;
 import us.whitedev.protocol.components.data.impl.DataTool;
 import us.whitedev.protocol.components.objects.ItemStack;
@@ -42,7 +42,7 @@ public class Cipher2 implements Crasher {
         msgHelper.sendMessage("Starting crashing with &f" + (ClickGui.IS_VISIBLE ? getName() : "******"), true);
 
         int protocol = ViaLoadingBase.getInstance().getTargetVersion().getVersion();
-        if (XynisProtocol.SUPPORTED_PROTOCOLS.contains(protocol)) {
+        if (RedSignalProtocol.SUPPORTED_PROTOCOLS.contains(protocol)) {
             List<DataTool.Rule> rules = new ArrayList<>();
             int[] array = new int[count];
             for (int i = 0; i < size; i++)

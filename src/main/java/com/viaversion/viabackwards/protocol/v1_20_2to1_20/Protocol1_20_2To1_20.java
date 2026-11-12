@@ -31,7 +31,7 @@ import com.viaversion.viaversion.protocols.v1_20to1_20_2.packet.ServerboundConfi
 import com.viaversion.viaversion.protocols.v1_20to1_20_2.packet.ServerboundPackets1_20_2;
 import com.viaversion.viaversion.rewriter.ParticleRewriter;
 import com.viaversion.viaversion.rewriter.TagRewriter;
-import us.whitedev.XynisClient;
+import us.whitedev.RedSignalClient;
 
 import java.util.UUID;
 
@@ -94,7 +94,7 @@ public final class Protocol1_20_2To1_20 extends BackwardsProtocol<ClientboundPac
                 clientInfoWrapper.write(Types.BOOLEAN, true);
                 clientInfoWrapper.sendToServer(Protocol1_20_2To1_20.class);
 
-                if(XynisClient.SONAR_ANTIBOT_FIX) {
+                if(RedSignalClient.SONAR_ANTIBOT_FIX) {
                     PacketWrapper brandWrapper = wrapper.create(ServerboundConfigurationPackets1_20_2.CUSTOM_PAYLOAD);
                     brandWrapper.write(Types.STRING, "minecraft:brand");
                     brandWrapper.write(Types.BYTE_ARRAY_PRIMITIVE, "vanilla".getBytes(java.nio.charset.StandardCharsets.UTF_8));

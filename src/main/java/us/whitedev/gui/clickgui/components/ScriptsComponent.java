@@ -34,7 +34,7 @@ public class ScriptsComponent {
     private static final String DEFAULT_SCRIPT = """
             start
             
-            debug.print("Hello XynisClient");
+            debug.print("Hello RedSignalClient");
             
             stop
             """;

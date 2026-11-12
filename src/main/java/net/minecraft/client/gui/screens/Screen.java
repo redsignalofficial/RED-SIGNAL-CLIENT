@@ -366,7 +366,7 @@ public abstract class Screen extends AbstractContainerEventHandler implements Re
          p_282281_.blit(BACKGROUND_LOCATION, 0, 0, 0, 0.0F, 0.0F, this.width, this.height, 32, 32);
          p_282281_.setColor(1.0F, 1.0F, 1.0F, 1.0F);
       }else{
-         ResourceLocation customBackground = new ResourceLocation("xynis", "textures/gui/custom_background.png");
+         ResourceLocation customBackground = new ResourceLocation("redsignal", "textures/gui/custom_background.png");
          p_282281_.blit(customBackground, 0, 0, 0, 0, this.minecraft.screen.width, this.minecraft.screen.height, this.minecraft.screen.width, this.minecraft.screen.height);
       }
    }

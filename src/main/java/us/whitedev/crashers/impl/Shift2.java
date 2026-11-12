@@ -17,7 +17,7 @@ import us.whitedev.utils.OptionType;
 import java.util.List;
 
     /*
-    NOTE: Shift2 was created by Iniuriasu for XynisClient
+    NOTE: Shift2 was created by Iniuriasu for RedSignalClient
     */
 
 public class Shift2 implements Crasher {

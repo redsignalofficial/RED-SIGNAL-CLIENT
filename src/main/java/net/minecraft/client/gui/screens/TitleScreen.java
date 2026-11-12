@@ -32,14 +32,14 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import us.whitedev.XynisClient;
+import us.whitedev.RedSignalClient;
 import us.whitedev.gui.clickgui.ClickGui;
 import us.whitedev.gui.clickgui.components.WelcomeComponent;
 import us.whitedev.gui.common.CustomUi;
 import us.whitedev.gui.common.CustomButton;
 import us.whitedev.gui.common.RenderUtils;
 import us.whitedev.gui.screen.AltManagerScreen;
-import us.whitedev.proxy.XynisProxy;
+import us.whitedev.proxy.RedSignalProxy;
 
 @OnlyIn(Dist.CLIENT)
 public class TitleScreen extends Screen {
@@ -53,11 +53,11 @@ public class TitleScreen extends Screen {
    private final PanoramaRenderer panorama = new PanoramaRenderer(CUBE_MAP);
    private final boolean fading;
    private long fadeInStart;
-   private long xynisOpenTimeMs;
-   private int xynisPanelX;
-   private int xynisPanelY;
-   private int xynisPanelW;
-   private int xynisPanelH;
+   private long redSignalOpenTimeMs;
+   private int redSignalPanelX;
+   private int redSignalPanelY;
+   private int redSignalPanelW;
+   private int redSignalPanelH;
    private float lastPanelAlpha = -1.0F;
    private ResourceLocation cachedAvatarSkin;
    private boolean changelogOpen;
@@ -71,8 +71,8 @@ public class TitleScreen extends Screen {
       this(false);
    }
 
-   private void initXynisUI() {
-      this.xynisOpenTimeMs = Util.getMillis();
+   private void initRed SignalUI() {
+      this.redSignalOpenTimeMs = Util.getMillis();
       this.changelogOpen = false;
       this.changelogScroll = 0;
       this.changelogMaxScroll = 0;
@@ -90,10 +90,10 @@ public class TitleScreen extends Screen {
       panelW = Mth.clamp(panelW, 320, Math.max(320, this.width - 20));
       panelH = Mth.clamp(panelH, 320, Math.max(320, this.height - 20));
 
-      this.xynisPanelW = panelW;
-      this.xynisPanelH = panelH;
-      this.xynisPanelX = (this.width - panelW) / 2;
-      this.xynisPanelY = (this.height - panelH) / 2;
+      this.redSignalPanelW = panelW;
+      this.redSignalPanelH = panelH;
+      this.redSignalPanelX = (this.width - panelW) / 2;
+      this.redSignalPanelY = (this.height - panelH) / 2;
 
       int pad = 22;
 
@@ -107,8 +107,8 @@ public class TitleScreen extends Screen {
       int btnW = (int) Math.round(panelW * 0.80);
       int btnH = 40;
       int btnGap = 14;
-      int btnX = this.xynisPanelX + (panelW - btnW) / 2;
-      int firstBtnY = this.xynisPanelY + pad + headerH;
+      int btnX = this.redSignalPanelX + (panelW - btnW) / 2;
+      int firstBtnY = this.redSignalPanelY + pad + headerH;
 
       Component component = this.getMultiplayerDisabledReason();
       boolean allowMulti = component == null;
@@ -161,9 +161,9 @@ public class TitleScreen extends Screen {
       int smallH = 28;
       int smallW = (int) Math.round(panelW * 0.35);
       int smallGap = 12;
-      int smallY = this.xynisPanelY + panelH - pad - smallH;
+      int smallY = this.redSignalPanelY + panelH - pad - smallH;
       int smallRowW = smallW * 2 + smallGap;
-      int smallStartX = this.xynisPanelX + (panelW - smallRowW) / 2;
+      int smallStartX = this.redSignalPanelX + (panelW - smallRowW) / 2;
 
       CustomButton options = new CustomButton(smallStartX, smallY, smallW, smallH, Component.translatable("menu.options"), b -> {
          this.minecraft.setScreen(new OptionsScreen(this, this.minecraft.options));
@@ -186,8 +186,8 @@ public class TitleScreen extends Screen {
       this.addRenderableWidget(quit);
 
       int avatarSize = 40;
-      int avatarX = this.xynisPanelX + panelW - pad - avatarSize;
-      int avatarY = this.xynisPanelY + pad;
+      int avatarX = this.redSignalPanelX + panelW - pad - avatarSize;
+      int avatarY = this.redSignalPanelY + pad;
 
       CustomButton avatar = new CustomButton(avatarX, avatarY, avatarSize, avatarSize, Component.literal("Alt Manager"), b -> {
          this.minecraft.setScreen(new AltManagerScreen());
@@ -273,7 +273,7 @@ public class TitleScreen extends Screen {
 
    protected void init() {
       this.clearWidgets();
-      this.initXynisUI();
+      this.initRed SignalUI();
       this.minecraft.setConnectedToRealms(false);
       if (this.realmsNotificationsScreen == null) {
          this.realmsNotificationsScreen = new RealmsNotificationsScreen();
@@ -301,23 +301,23 @@ public class TitleScreen extends Screen {
    }
 
    public void render(GuiGraphics p_282860_, int p_281753_, int p_283539_, float p_282628_) {
-      this.renderXynisUI(p_282860_, p_281753_, p_283539_, p_282628_);
+      this.renderRed SignalUI(p_282860_, p_281753_, p_283539_, p_282628_);
    }
 
-   private void renderXynisUI(GuiGraphics g, int mouseX, int mouseY, float partialTick) {
-      if (this.xynisOpenTimeMs == 0L) {
-         this.xynisOpenTimeMs = Util.getMillis();
+   private void renderRed SignalUI(GuiGraphics g, int mouseX, int mouseY, float partialTick) {
+      if (this.redSignalOpenTimeMs == 0L) {
+         this.redSignalOpenTimeMs = Util.getMillis();
       }
 
-      float panelAlpha = Mth.clamp((Util.getMillis() - this.xynisOpenTimeMs) / 400.0F, 0.0F, 1.0F);
+      float panelAlpha = Mth.clamp((Util.getMillis() - this.redSignalOpenTimeMs) / 400.0F, 0.0F, 1.0F);
 
       int accent = ClickGui.getCurrentThemeColor();
       CustomUi.renderBackground(g, this.width, this.height, 0, 0, 0, accent);
 
-      int panelX = this.xynisPanelX;
-      int panelY = this.xynisPanelY;
-      int panelW = this.xynisPanelW;
-      int panelH = this.xynisPanelH;
+      int panelX = this.redSignalPanelX;
+      int panelY = this.redSignalPanelY;
+      int panelW = this.redSignalPanelW;
+      int panelH = this.redSignalPanelH;
       int radius = 20;
 
       int panelColor = withAlpha(0xFF0F1116, (int) (190 * panelAlpha));
@@ -327,7 +327,7 @@ public class TitleScreen extends Screen {
       RenderUtils.drawRoundedRectOutline(g.pose(), panelX, panelY, panelW, panelH, radius, 1, borderColor);
 
       int pad = 16;
-      String title = "XynisClient";
+      String title = "RedSignalClient";
       int titleSize = 34;
       boolean titleBold = true;
       float titleW = RenderUtils.getCustomStringWidth(title, titleBold, 34);
@@ -342,8 +342,8 @@ public class TitleScreen extends Screen {
       float subtitleBaseY = titleBaseY + RenderUtils.getCustomFontHeight(titleSize, titleBold);
       RenderUtils.drawCustomString(g.pose(), subtitle, this.width / 2f - subtitleW / 2f, subtitleBaseY, withAlpha(0xFF9CA3AF, (int) (255 * panelAlpha)), false, subtitleSize);
 
-      String footer = "XynisClient (" + XynisClient.VERSION + ")";
-      String footer2 = "Created by: 0WhiteDev & madeq";
+      String footer = "RedSignalClient (" + RedSignalClient.VERSION + ")";
+      String footer2 = "Created by: Rin";
       RenderUtils.drawCustomString(g.pose(), footer, 12, this.height - 30, withAlpha(0xFF94A3B8, (int) (255 * panelAlpha)), false, 12);
       RenderUtils.drawCustomString(g.pose(), footer2, 12, this.height - 18, withAlpha(0xFF64748B, (int) (255 * panelAlpha)), false, 12);
 
@@ -471,7 +471,7 @@ public class TitleScreen extends Screen {
 
       g.enableScissor(innerX, innerY, innerX + innerW, innerY + innerH + 10);
 
-      String sec1 = "XynisClient " + XynisClient.VERSION;
+      String sec1 = "RedSignalClient " + RedSignalClient.VERSION;
       RenderUtils.drawCustomString(g.pose(), sec1, innerX, y + RenderUtils.getCustomFontAscent(sectionSize, true), withAlpha(0xFF9CA3AF, (int) (255 * panelAlpha)), true, sectionSize);
       y += RenderUtils.getCustomFontHeight(sectionSize, true) + 10;
 
@@ -483,7 +483,7 @@ public class TitleScreen extends Screen {
 
       y += 14;
 
-      String sec2 = "XynisProxy " + XynisProxy.VERSION;
+      String sec2 = "RedSignalProxy " + RedSignalProxy.VERSION;
       RenderUtils.drawCustomString(g.pose(), sec2, innerX, y + RenderUtils.getCustomFontAscent(sectionSize, true), withAlpha(0xFF9CA3AF, (int) (255 * panelAlpha)), true, sectionSize);
       y += RenderUtils.getCustomFontHeight(sectionSize, true) + 10;
       for (String s : proxy) {

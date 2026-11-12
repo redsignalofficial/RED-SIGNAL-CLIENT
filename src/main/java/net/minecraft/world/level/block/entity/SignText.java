@@ -52,7 +52,7 @@ public class SignText {
       if (ExploitCommand.SIGNMODE != ExploitCommand.SignExploitMode.DISABLED) {
          this.messages = new Component[]{
                  Component.literal("    >=========<    "),
-                 Component.literal("       Xynis       "),
+                 Component.literal("       Red Signal       "),
                  Component.literal("    SignExploit    "),
                  Component.literal("    >=========<    ")
          };

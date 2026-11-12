@@ -79,7 +79,7 @@ line.title {
     align: left;
     z-index: 10;
 
-    segment: "XynisClient "|theme|true|18;
+    segment: "RedSignalClient "|theme|true|18;
     segment: "${version}"|#FFBFC7D5|false|16;
 }
 

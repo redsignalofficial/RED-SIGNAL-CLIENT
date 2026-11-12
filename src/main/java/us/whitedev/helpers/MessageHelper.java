@@ -23,7 +23,7 @@ public class MessageHelper {
             String prefixColor = getGuiColor();
 
             String prefix = "<dark_gray>[</dark_gray>"
-                    + "<" + prefixColor + ">XynisClient</" + prefixColor + ">"
+                    + "<" + prefixColor + ">RedSignalClient</" + prefixColor + ">"
                     + "<dark_gray>] » </dark_gray><gray>";
 
             finalMessage = prefix + msg;

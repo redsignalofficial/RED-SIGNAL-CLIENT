@@ -143,7 +143,7 @@ public class ServerSelectionList extends ObjectSelectionList<ServerSelectionList
    }
 
    protected int getScrollbarPosition() {
-      if (ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.XYNIS) {
+      if (ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.RED SIGNAL) {
          return this.x1 - 8;
       }
 
@@ -151,7 +151,7 @@ public class ServerSelectionList extends ObjectSelectionList<ServerSelectionList
    }
 
    public int getRowWidth() {
-      if (ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.XYNIS) {
+      if (ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.RED SIGNAL) {
          return Math.max(0, this.width - 22);
       }
 
@@ -205,7 +205,7 @@ public class ServerSelectionList extends ObjectSelectionList<ServerSelectionList
       }
 
       public void render(GuiGraphics p_282600_, int p_282649_, int p_283641_, int p_282277_, int p_283034_, int p_281533_, int p_282746_, int p_281454_, boolean p_283673_, float p_282694_) {
-         if (ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.XYNIS) {
+         if (ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.RED SIGNAL) {
             boolean selected = this.screen.serverSelectionList.getSelected() == this;
             int accent = ClickGui.getCurrentThemeColor();
             int bg = selected ? BG_SELECTED : BG_NORMAL;
@@ -269,8 +269,8 @@ public class ServerSelectionList extends ObjectSelectionList<ServerSelectionList
       }
 
       public void render(GuiGraphics p_281406_, int p_281506_, int p_282921_, int p_281363_, int p_283596_, int p_281630_, int p_283567_, int p_282864_, boolean p_282999_, float p_281423_) {
-         final boolean customStyle = ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.XYNIS;
-         if (ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.XYNIS) {
+         final boolean customStyle = ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.RED SIGNAL;
+         if (ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.RED SIGNAL) {
             boolean selected = this.screen.serverSelectionList.getSelected() == this;
             int accent = ClickGui.getCurrentThemeColor();
             int bg = selected ? BG_SELECTED : BG_NORMAL;
@@ -470,7 +470,7 @@ public class ServerSelectionList extends ObjectSelectionList<ServerSelectionList
          } else {
             try {
                NativeImage img = NativeImage.read(p_273176_);
-               if (ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.XYNIS) {
+               if (ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.RED SIGNAL) {
                   roundIconCorners(img);
                }
                this.icon.upload(img);

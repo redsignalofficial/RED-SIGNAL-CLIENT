@@ -12,7 +12,7 @@ import net.minecraft.world.item.Items;
 import us.whitedev.crashers.Crasher;
 import us.whitedev.gui.clickgui.ClickGui;
 import us.whitedev.helpers.PacketHelper;
-import us.whitedev.protocol.XynisProtocol;
+import us.whitedev.protocol.RedSignalProtocol;
 import us.whitedev.protocol.components.data.DataComponents;
 import us.whitedev.protocol.components.data.impl.DataCustom;
 import us.whitedev.protocol.packets.PacketCodec;
@@ -54,7 +54,7 @@ public class Echo2 implements Crasher {
 
             CompoundTag tag = generateTag(size, depth);
 
-            boolean isNewVersion = XynisProtocol.SUPPORTED_PROTOCOLS.contains(protocol);
+            boolean isNewVersion = RedSignalProtocol.SUPPORTED_PROTOCOLS.contains(protocol);
             if (!isNewVersion)
                 msgHelper.sendMessage("You are using native data structure, if you want to use new structure, change version to 1.20.5+", true);
 

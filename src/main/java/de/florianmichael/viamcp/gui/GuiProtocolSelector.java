@@ -39,7 +39,7 @@ public class GuiProtocolSelector extends Screen {
 
     /**
 
-     Hey, I recoded this gui to XynisGui, but still I fixed this one
+     Hey, I recoded this gui to Red SignalGui, but still I fixed this one
      so if you want to use it, you are free to do that :D
 
      **/
@@ -143,7 +143,7 @@ public class GuiProtocolSelector extends Screen {
         graphics.drawString(font, "Updated by NickRest", 1, 21, -1);
         graphics.drawString(font, "Discord: @nickrest", 1, 31, -1);
 
-        graphics.drawString(font, "Fixes for 1.20.1 by 0WhiteDev", 1, 41, -1);
+        graphics.drawString(font, "Fixes for 1.20.1 by Rin", 1, 41, -1);
 
         final ProtocolInfo protocolInfo = ProtocolInfo.fromProtocolVersion(ViaLoadingBase.getInstance().getTargetVersion());
 

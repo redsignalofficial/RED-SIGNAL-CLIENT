@@ -1,6 +1,6 @@
 package us.whitedev.proxy.utils;
 
-import us.whitedev.proxy.XynisProxy;
+import us.whitedev.proxy.RedSignalProxy;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -14,6 +14,6 @@ public class ProxyLogger {
     }
 
     public static void send(String message, LogType logType){
-        XynisProxy.LOGS.add(String.format("[%s] [%s] %s%n", getTime(), logType.name(), message));
+        RedSignalProxy.LOGS.add(String.format("[%s] [%s] %s%n", getTime(), logType.name(), message));
     }
 }

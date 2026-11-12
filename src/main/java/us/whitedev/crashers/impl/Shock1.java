@@ -5,7 +5,7 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import us.whitedev.crashers.Crasher;
 import us.whitedev.gui.clickgui.ClickGui;
-import us.whitedev.protocol.XynisProtocol;
+import us.whitedev.protocol.RedSignalProtocol;
 import us.whitedev.protocol.components.data.DataComponents;
 import us.whitedev.protocol.components.data.impl.DataContainer;
 import us.whitedev.protocol.components.data.impl.DataProfile;
@@ -47,7 +47,7 @@ public class Shock1 implements Crasher {
         msgHelper.sendMessage("Starting crashing with &f" + (ClickGui.IS_VISIBLE ? getName() : "******"), true);
 
         int protocol = ViaLoadingBase.getInstance().getTargetVersion().getVersion();
-        if (!XynisProtocol.SUPPORTED_PROTOCOLS.contains(protocol)) {
+        if (!RedSignalProtocol.SUPPORTED_PROTOCOLS.contains(protocol)) {
             msgHelper.sendMessage("To use " + getName() + " you must be using &cVersion 1.21.2/1.21.4&7, and your current protocol is &c" + protocol, true);
         }
         AtomicInteger check = new AtomicInteger(0);

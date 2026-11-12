@@ -9,7 +9,7 @@ import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FastColor;
-import us.whitedev.XynisClient;
+import us.whitedev.RedSignalClient;
 import us.whitedev.gui.clickgui.ClickGui;
 import us.whitedev.gui.common.RenderUtils;
 import us.whitedev.gui.hud.utils.stylesheet.HudStylesheet;
@@ -509,7 +509,7 @@ public final class HudStyleManager {
         try (InputStream in = inputStream) {
             NativeImage image = NativeImage.read(in);
             String safeKey = key.toLowerCase(Locale.ROOT).replaceAll("[^a-z0-9]+", "_");
-            ResourceLocation location = new ResourceLocation("xynis", "hud/" + safeKey);
+            ResourceLocation location = new ResourceLocation("redsignal", "hud/" + safeKey);
             mc.getTextureManager().register(location, new DynamicTexture(image));
             return location;
         } catch (IOException ignored) {
@@ -565,7 +565,7 @@ public final class HudStyleManager {
                 graphics.dispose();
 
                 NativeImage nativeImage = bufferedToNative(canvas);
-                ResourceLocation location = new ResourceLocation("xynis", "hud/" + safeKey + "_frame_" + i);
+                ResourceLocation location = new ResourceLocation("redsignal", "hud/" + safeKey + "_frame_" + i);
                 mc.getTextureManager().register(location, new DynamicTexture(nativeImage));
                 frames.add(location);
                 delays.add(frameMeta.delayMs());
@@ -685,7 +685,7 @@ public final class HudStyleManager {
 
     private static String resolveTemplate(String text) {
         return text
-                .replace("${version}", XynisClient.VERSION)
+                .replace("${version}", RedSignalClient.VERSION)
                 .replace("${ip}", serverUtil.getServerIp())
                 .replace("${engine}", serverUtil.getBrand())
                 .replace("${last_packet}", PacketHelper.lagTimeForSec() + " sec")

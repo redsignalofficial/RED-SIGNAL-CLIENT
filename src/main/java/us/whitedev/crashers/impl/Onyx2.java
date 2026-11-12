@@ -14,7 +14,7 @@ import us.whitedev.crashers.Crasher;
 import us.whitedev.gui.clickgui.ClickGui;
 import us.whitedev.helpers.BypassHelper;
 import us.whitedev.helpers.PacketHelper;
-import us.whitedev.protocol.XynisProtocol;
+import us.whitedev.protocol.RedSignalProtocol;
 import us.whitedev.protocol.components.data.DataComponents;
 import us.whitedev.protocol.components.data.impl.DataRecipes;
 import us.whitedev.protocol.components.objects.ItemType;
@@ -46,7 +46,7 @@ public class Onyx2 implements Crasher {
             listTag.add(new StringTag(bypassHelper.generateString(length, BypassHelper.StringType.DEFAULT)));
 
         int protocol = ViaLoadingBase.getInstance().getTargetVersion().getVersion();
-        if (XynisProtocol.SUPPORTED_PROTOCOLS.contains(protocol)) {
+        if (RedSignalProtocol.SUPPORTED_PROTOCOLS.contains(protocol)) {
             DataRecipes dataRecipes = new DataRecipes(listTag);
             DataComponents dataComponents = new DataComponents();
             dataComponents.put(dataRecipes);

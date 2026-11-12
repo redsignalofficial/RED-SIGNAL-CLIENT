@@ -20,7 +20,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class CapeLayer extends RenderLayer<AbstractClientPlayer, PlayerModel<AbstractClientPlayer>> {
-    private final static ResourceLocation resourceCapeLocation = new ResourceLocation("xynis", "textures/client/cape.png");
+    private final static ResourceLocation resourceCapeLocation = new ResourceLocation("redsignal", "textures/client/cape.png");
 
     public CapeLayer(RenderLayerParent<AbstractClientPlayer, PlayerModel<AbstractClientPlayer>> p_116602_) {
         super(p_116602_);

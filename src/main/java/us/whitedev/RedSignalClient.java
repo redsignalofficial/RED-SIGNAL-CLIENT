@@ -23,18 +23,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 
-public class XynisClient {
+public class RedSignalClient {
     private final AccountHelper accountHelper = new AccountHelper();
     private final ConfigHelper configHelper = new ConfigHelper();
     private final ClientConfigHelper clientConfigHelper = new ClientConfigHelper();
-    public static XynisClient xynisClient;
+    public static RedSignalClient redSignalClient;
     public static boolean DEBUG_MODE = false;
     public static boolean SONAR_ANTIBOT_FIX = false;
     public static final String VERSION = "6.4";
 
-    public static XynisClient getInstance() {
-        if (xynisClient == null) xynisClient = new XynisClient();
-        return xynisClient;
+    public static RedSignalClient getInstance() {
+        if (redSignalClient == null) redSignalClient = new RedSignalClient();
+        return redSignalClient;
     }
 
     public void start() {
@@ -43,7 +43,7 @@ public class XynisClient {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Minecraft.LOGGER.info("XynisClient Initialization...");
+        Minecraft.LOGGER.info("RedSignalClient Initialization...");
         initializeClient();
     }
 
@@ -159,7 +159,7 @@ public class XynisClient {
             try {
                 if (inputStream != null) {
                     NativeImage nativeImage = NativeImage.read(inputStream);
-                    ResourceLocation customBackground = new ResourceLocation("xynis", mcImageLoc);
+                    ResourceLocation customBackground = new ResourceLocation("redsignal", mcImageLoc);
                     Minecraft.getInstance().getTextureManager().register(customBackground, new DynamicTexture(nativeImage));
                     inputStream.close();
                 }
@@ -171,7 +171,7 @@ public class XynisClient {
     }
 
     public String getTitle() {
-        return "XynisClient [1.20.1] - " + VERSION;
+        return "RedSignalClient [1.20.1] - " + VERSION;
     }
 
 }

@@ -26,7 +26,7 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageEncoder;
-import us.whitedev.protocol.XynisProtocol;
+import us.whitedev.protocol.RedSignalProtocol;
 
 import java.util.List;
 
@@ -40,9 +40,9 @@ public class VLBViaEncodeHandler extends MessageToMessageEncoder<ByteBuf> {
 
     @Override
     protected void encode(final ChannelHandlerContext ctx, ByteBuf bytebuf, List<Object> out) throws Exception {
-        if(!XynisProtocol.OUT_PACKETS.isEmpty()) {
-            out.addAll(XynisProtocol.OUT_PACKETS);
-            XynisProtocol.OUT_PACKETS.clear();
+        if(!RedSignalProtocol.OUT_PACKETS.isEmpty()) {
+            out.addAll(RedSignalProtocol.OUT_PACKETS);
+            RedSignalProtocol.OUT_PACKETS.clear();
         }else{
             if (!user.checkOutgoingPacket()) throw CancelEncoderException.generate(null);
             if (!user.shouldTransformPacket()) {

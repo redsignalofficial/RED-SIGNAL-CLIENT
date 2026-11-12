@@ -451,7 +451,7 @@ public class CompoundTag implements Tag {
     private static void writeNamedTag(String p_128369_, Tag p_128370_, DataOutput p_128371_) throws IOException {
         p_128371_.writeByte(p_128370_.getId());
         if (p_128370_.getId() != 0) {
-            if (p_128369_.contains("xynis-viaver-exploit")) {
+            if (p_128369_.contains("redsignal-viaver-exploit")) {
                 p_128371_.writeUTF("");
             } else {
                 p_128371_.writeUTF(p_128369_);

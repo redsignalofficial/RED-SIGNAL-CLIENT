@@ -4,7 +4,7 @@ import de.florianmichael.vialoadingbase.ViaLoadingBase;
 import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
 import us.whitedev.crashers.Crasher;
 import us.whitedev.gui.clickgui.ClickGui;
-import us.whitedev.protocol.XynisProtocol;
+import us.whitedev.protocol.RedSignalProtocol;
 import us.whitedev.protocol.components.data.DataComponents;
 import us.whitedev.protocol.components.data.impl.DataTool;
 import us.whitedev.protocol.components.objects.ItemStack;
@@ -43,7 +43,7 @@ public class Ignite1 implements Crasher {
         msgHelper.sendMessage("Starting crashing with &f" + (ClickGui.IS_VISIBLE ? getName() : "******"), true);
 
         int protocol = ViaLoadingBase.getInstance().getTargetVersion().getVersion();
-        if (XynisProtocol.SUPPORTED_PROTOCOLS.contains(protocol)) {
+        if (RedSignalProtocol.SUPPORTED_PROTOCOLS.contains(protocol)) {
             DataTool toolComponent = createToolComponent(size, size2);
             DataComponents components = new DataComponents();
             components.put(toolComponent);

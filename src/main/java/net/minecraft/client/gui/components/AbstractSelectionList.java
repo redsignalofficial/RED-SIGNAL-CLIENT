@@ -202,7 +202,7 @@ public abstract class AbstractSelectionList<E extends AbstractSelectionList.Entr
             p_282708_.blit(Screen.BACKGROUND_LOCATION, this.x0, this.y0, (float) this.x1, (float) (this.y1 + (int) this.getScrollAmount()), this.x1 - this.x0, this.y1 - this.y0, 32, 32);
             p_282708_.setColor(1.0F, 1.0F, 1.0F, 1.0F);
          }else{
-            ResourceLocation customBackground = new ResourceLocation("xynis", "textures/gui/custom_background.png");
+            ResourceLocation customBackground = new ResourceLocation("redsignal", "textures/gui/custom_background.png");
             p_282708_.blit(customBackground, 0, 0, 0, 0, this.minecraft.screen.width, this.minecraft.screen.height, this.minecraft.screen.width, this.minecraft.screen.height);
          }
       }

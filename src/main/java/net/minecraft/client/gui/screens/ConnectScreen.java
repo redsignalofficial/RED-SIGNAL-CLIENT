@@ -64,7 +64,7 @@ public class ConnectScreen extends Screen {
    private final List<String> connectionSteps = new ArrayList<>();
    private String serverIP;
    private int serverPort;
-   private long xynisOpenTimeMs;
+   private long redSignalOpenTimeMs;
 
    public ConnectScreen(Screen p_279215_, Component p_279228_) {
       super(GameNarrator.NO_TITLE);
@@ -167,7 +167,7 @@ public class ConnectScreen extends Screen {
 
    private void addConnectionStep(String step) {
       String coloredStep;
-      if (ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.XYNIS) {
+      if (ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.RED SIGNAL) {
          coloredStep = step;
       } else {
          switch (connectionSteps.size()) {
@@ -202,14 +202,14 @@ public class ConnectScreen extends Screen {
    }
 
    protected void init() {
-      this.xynisOpenTimeMs = Util.getMillis();
+      this.redSignalOpenTimeMs = Util.getMillis();
       int panelW = Math.min(520, this.width - 80);
       int panelH = Math.min(280, this.height - 120);
       int panelX = (this.width - panelW) / 2;
       int panelY = (this.height - panelH) / 2;
-      int cancelY = ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.XYNIS ? panelY + panelH - 38 : this.height / 4 + 120 + 12;
+      int cancelY = ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.RED SIGNAL ? panelY + panelH - 38 : this.height / 4 + 120 + 12;
 
-      if (ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.XYNIS) {
+      if (ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.RED SIGNAL) {
          this.addRenderableWidget((new CustomButton(panelX + (panelW - 220) / 2, cancelY, 220, 24, CommonComponents.GUI_CANCEL, p_289624_ -> {
             this.abortAndReturn();
          })).setRadius(10).setBackground(new Color(16, 19, 25).getRGB(), new Color(16, 19, 25).getRGB()).setBorderColor(new Color(255, 255, 255, 10).getRGB()).setGlow(new Color(108, 124, 255).getRGB(), 46).setText(new Color(230, 234, 242).getRGB(), false, 13));
@@ -272,11 +272,11 @@ public class ConnectScreen extends Screen {
       if(ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.MINECRAFT){
          p_283201_.drawCenteredString(this.font, this.status, this.width / 2, this.height / 2 - 50, new Color(255, 255, 255).getRGB());
       }else {
-         if (this.xynisOpenTimeMs == 0L) {
-            this.xynisOpenTimeMs = Util.getMillis();
+         if (this.redSignalOpenTimeMs == 0L) {
+            this.redSignalOpenTimeMs = Util.getMillis();
          }
 
-         float panelAlpha = Mth.clamp((Util.getMillis() - this.xynisOpenTimeMs) / 400.0F, 0.0F, 1.0F);
+         float panelAlpha = Mth.clamp((Util.getMillis() - this.redSignalOpenTimeMs) / 400.0F, 0.0F, 1.0F);
          int accent = ClickGui.getCurrentThemeColor();
          int panelW = Math.min(520, this.width - 80);
          int panelH = Math.min(280, this.height - 120);

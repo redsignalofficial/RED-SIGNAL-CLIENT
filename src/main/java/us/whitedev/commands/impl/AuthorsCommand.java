@@ -13,7 +13,7 @@ public class AuthorsCommand implements Command {
     @Override
     public void onCommand(String[] args) {
         msgHelper.sendSeparateLine();
-        msgHelper.sendMessage("Authors of the client is: &f0WhiteDev &7and &fmadeq", true);
+        msgHelper.sendMessage("Author of the client is: &fRin", true);
         msgHelper.sendSeparateLine();
     }
 }

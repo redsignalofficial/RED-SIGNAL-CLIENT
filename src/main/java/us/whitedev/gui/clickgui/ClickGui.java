@@ -6,7 +6,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.NotNull;
-import us.whitedev.XynisClient;
+import us.whitedev.RedSignalClient;
 import us.whitedev.crashers.CrashManager;
 import us.whitedev.crashers.Crasher;
 import us.whitedev.exploits.Exploit;
@@ -43,7 +43,7 @@ public class ClickGui extends Screen {
     public static boolean IS_VISIBLE = true;
     public static ColorTheme COLOR_THEME = ColorTheme.PINK;
     public static HudPlace HUD_PLACE = HudPlace.LEFT;
-    public static ClientStyle CLIENT_STYLE = ClientStyle.XYNIS;
+    public static ClientStyle CLIENT_STYLE = ClientStyle.RED SIGNAL;
     public static Section LAST_SELECTED_SECTION = null;
     public static boolean LAST_EDITING_OPEN = false;
     public static ModuleEditComponent.EditorState LAST_EDITOR_STATE = null;
@@ -73,7 +73,7 @@ public class ClickGui extends Screen {
     private boolean editingOpen = false;
 
     public ClickGui() {
-        super(Component.literal("XynisClient"));
+        super(Component.literal("RedSignalClient"));
         updateThemeColors();
         moduleSelectorComponent.setOnEdit((name, section) -> {
             if (section == Section.CRASHERS) {
@@ -212,8 +212,8 @@ public class ClickGui extends Screen {
     }
 
     private int renderLogoSection(GuiGraphics graphics, int centerX, int y) {
-        String title = "XynisClient ";
-        String version = XynisClient.VERSION;
+        String title = "RedSignalClient ";
+        String version = RedSignalClient.VERSION;
         int titleSize = 20;
         boolean titleBold = true;
         int subtitleSize = 10;
@@ -270,7 +270,7 @@ public class ClickGui extends Screen {
         float timeWidth = RenderUtils.getCustomStringWidth(timeString);
         RenderUtils.drawCustomString(graphics.pose(), timeString, centerX - timeWidth / 2, y, new Color(156,163,175).getRGB());
         y += 15;
-        String nickname = "Name: " + (ClickGui.IS_VISIBLE ? this.minecraft.getUser().getName() : "XynisUser");
+        String nickname = "Name: " + (ClickGui.IS_VISIBLE ? this.minecraft.getUser().getName() : "RedSignalUser");
         float nicknameWidth = RenderUtils.getCustomStringWidth(nickname);
         RenderUtils.drawCustomString(graphics.pose(), nickname, centerX - nicknameWidth / 2, y, new Color(156,163,175).getRGB());
     }
@@ -602,5 +602,5 @@ public class ClickGui extends Screen {
 
     public enum HudPlace {LEFT, RIGHT, HIDE}
 
-    public enum ClientStyle {MINECRAFT, XYNIS}
+    public enum ClientStyle {MINECRAFT, RED SIGNAL}
 }

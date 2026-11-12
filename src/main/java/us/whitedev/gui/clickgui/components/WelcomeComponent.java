@@ -2,15 +2,15 @@ package us.whitedev.gui.clickgui.components;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.GuiGraphics;
-import us.whitedev.XynisClient;
+import us.whitedev.RedSignalClient;
 import us.whitedev.gui.common.RenderUtils;
-import us.whitedev.proxy.XynisProxy;
+import us.whitedev.proxy.RedSignalProxy;
 
 import java.awt.Color;
 
 public class WelcomeComponent {
 
-    private static final String TITLE = "Welcome to XynisClient!";
+    private static final String TITLE = "Welcome to RedSignalClient!";
     private static final String SUBTITLE = "Exclusive Crash/Exploit Client based on Minecraft 1.20.1";
     private static final String BULLET_POINT = "• ";
 
@@ -34,7 +34,7 @@ public class WelcomeComponent {
             "Add LPX Crash Config for Banshee1",
             "Add Hud Style Editor",
             "Add Server Payload Channels Catcher",
-            "Add TAB for Xynis Commands",
+            "Add TAB for Red Signal Commands",
             "Fix Detect Command",
             "Add Rainbow prefix for Rainbow GUI",
             "Add writeItemUntrusted for Creative Packet",
@@ -52,12 +52,12 @@ public class WelcomeComponent {
         y = renderHeader(poseStack, x, y, themeColor);
 
         y = renderChangelog(poseStack, x, y, themeColor,
-                "XynisClient", XynisClient.VERSION, CLIENT_CHANGELOG);
+                "RedSignalClient", RedSignalClient.VERSION, CLIENT_CHANGELOG);
 
         y += SECTION_SPACING;
 
         renderChangelog(poseStack, x, y, themeColor,
-                "XynisProxy", XynisProxy.VERSION, PROXY_CHANGELOG);
+                "RedSignalProxy", RedSignalProxy.VERSION, PROXY_CHANGELOG);
     }
 
     private int renderHeader(PoseStack poseStack, int x, int y, int themeColor) {

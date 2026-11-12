@@ -232,7 +232,7 @@ import org.apache.commons.io.FileUtils;
 import org.joml.Matrix4f;
 import org.lwjgl.util.tinyfd.TinyFileDialogs;
 import org.slf4j.Logger;
-import us.whitedev.XynisClient;
+import us.whitedev.RedSignalClient;
 import us.whitedev.gui.clickgui.ClickGui;
 import us.whitedev.helpers.PacketHelper;
 
@@ -510,7 +510,7 @@ public class Minecraft extends ReentrantBlockableEventLoop<Runnable> implements 
       RealmsClient realmsclient = RealmsClient.create(this);
       this.realmsDataFetcher = new RealmsDataFetcher(realmsclient);
       RenderSystem.setErrorCallback(this::onFullscreenError);
-      XynisClient.getInstance().start();
+      RedSignalClient.getInstance().start();
       if (this.mainRenderTarget.width == this.window.getWidth() && this.mainRenderTarget.height == this.window.getHeight()) {
          if (this.options.fullscreen().get() && !this.window.isFullscreen()) {
             this.window.toggleFullScreen();
@@ -594,7 +594,7 @@ public class Minecraft extends ReentrantBlockableEventLoop<Runnable> implements 
    }
 
    public void updateTitle() {
-      this.window.setTitle(XynisClient.getInstance().getTitle());
+      this.window.setTitle(RedSignalClient.getInstance().getTitle());
    }
 
    private String createTitle() {
@@ -1852,7 +1852,7 @@ public class Minecraft extends ReentrantBlockableEventLoop<Runnable> implements 
          }
       }
 
-      while(this.options.xynisGuiKey.consumeClick()){
+      while(this.options.redSignalGuiKey.consumeClick()){
          this.setScreen(new ClickGui());
       }
 

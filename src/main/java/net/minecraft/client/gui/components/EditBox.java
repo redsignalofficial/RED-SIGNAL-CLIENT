@@ -398,7 +398,7 @@ public class EditBox extends AbstractWidget implements Renderable {
             RenderUtils.drawRoundedRectOutline(p_283252_.pose(), x, y, this.width, this.height, radius, 1, outline);
          }
 
-         boolean xynisStyle = ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.XYNIS && !(Minecraft.getInstance().screen instanceof ChatScreen);
+         boolean redSignalStyle = ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.RED SIGNAL && !(Minecraft.getInstance().screen instanceof ChatScreen);
          int i2 = this.isEditable ? this.textColor : this.textColorUneditable;
          int j = this.cursorPos - this.displayPos;
          int k = this.highlightPos - this.displayPos;
@@ -431,17 +431,17 @@ public class EditBox extends AbstractWidget implements Renderable {
          }
 
          if (this.hint != null && s.isEmpty() && !this.isFocused()) {
-            int hintColor = xynisStyle ? new Color(148, 163, 184).getRGB() : i2;
+            int hintColor = redSignalStyle ? new Color(148, 163, 184).getRGB() : i2;
             p_283252_.drawString(this.font, this.hint, j1, i1, hintColor);
          }
 
          if (!flag2 && this.suggestion != null) {
-            int suggestionColor = xynisStyle ? new Color(107, 114, 128).getRGB() : new Color(128, 128, 128).getRGB();
+            int suggestionColor = redSignalStyle ? new Color(107, 114, 128).getRGB() : new Color(128, 128, 128).getRGB();
             p_283252_.drawString(this.font, this.suggestion, k1 - 1, i1, suggestionColor);
          }
 
          if (flag1) {
-            int cursorColor = xynisStyle ? ClickGui.getCurrentThemeColor() : new Color(208, 208, 208).getRGB();
+            int cursorColor = redSignalStyle ? ClickGui.getCurrentThemeColor() : new Color(208, 208, 208).getRGB();
             if (flag2) {
                p_283252_.fill(RenderType.guiOverlay(), k1, i1 - 1, k1 + 1, i1 + 1 + 9, cursorColor);
             } else {
@@ -479,7 +479,7 @@ public class EditBox extends AbstractWidget implements Renderable {
       }
 
       int highlightColor;
-      if (ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.XYNIS && !(Minecraft.getInstance().screen instanceof ChatScreen)) {
+      if (ClickGui.CLIENT_STYLE == ClickGui.ClientStyle.RED SIGNAL && !(Minecraft.getInstance().screen instanceof ChatScreen)) {
          Color accent = new Color(ClickGui.getCurrentThemeColor(), true);
          highlightColor = new Color(accent.getRed(), accent.getGreen(), accent.getBlue(), 95).getRGB();
       } else {

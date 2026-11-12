@@ -20,7 +20,7 @@ import java.io.IOException;
 
 public final class CustomUi {
 
-    private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation("xynis", "textures/gui/custom_background.png");
+    private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation("redsignal", "textures/gui/custom_background.png");
     private static int backgroundTextureW = -1;
     private static int backgroundTextureH = -1;
 

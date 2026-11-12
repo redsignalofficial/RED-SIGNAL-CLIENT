@@ -36,8 +36,8 @@ public class Lux1 implements Crasher {
 
         Int2ObjectMap<ItemStack> int2objectmap = new Int2ObjectOpenHashMap<>();
 
-        for (int i = 0; i < size; i++) listtag.add(new StringTag("xynis"));
-        comp.put("xynis", listtag);
+        for (int i = 0; i < size; i++) listtag.add(new StringTag("redsignal"));
+        comp.put("redsignal", listtag);
         ItemStack is = new ItemStack(Items.CHERRY_CHEST_BOAT, 1, Optional.of(comp));
 
         for (int i = 0; i < mapSize; ++i)

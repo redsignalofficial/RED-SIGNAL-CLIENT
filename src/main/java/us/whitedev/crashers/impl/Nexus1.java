@@ -7,7 +7,7 @@ import net.minecraft.nbt.CompoundTag;
 import org.checkerframework.checker.units.qual.C;
 import us.whitedev.crashers.Crasher;
 import us.whitedev.gui.clickgui.ClickGui;
-import us.whitedev.protocol.XynisProtocol;
+import us.whitedev.protocol.RedSignalProtocol;
 import us.whitedev.protocol.components.data.DataComponents;
 import us.whitedev.protocol.components.data.impl.DataChargedProjectiles;
 import us.whitedev.protocol.components.data.impl.DataContainer;
@@ -50,7 +50,7 @@ public class Nexus1 implements Crasher {
         msgHelper.sendMessage("Starting crashing with &f" + (ClickGui.IS_VISIBLE ? getName() : "******"), true);
 
         int protocol = ViaLoadingBase.getInstance().getTargetVersion().getVersion();
-        if (XynisProtocol.SUPPORTED_PROTOCOLS.contains(protocol)) {
+        if (RedSignalProtocol.SUPPORTED_PROTOCOLS.contains(protocol)) {
             List<CompoundTag> itemLore = new ArrayList<>();
 
             for (int i = 0; i < size; ++i) itemLore.add(new CompoundTag());

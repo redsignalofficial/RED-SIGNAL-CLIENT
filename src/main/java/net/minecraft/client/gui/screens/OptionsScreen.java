@@ -23,7 +23,7 @@ import net.minecraft.server.packs.repository.PackRepository;
 import net.minecraft.world.Difficulty;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import us.whitedev.XynisClient;
+import us.whitedev.RedSignalClient;
 
 @OnlyIn(Dist.CLIENT)
 public class OptionsScreen extends Screen {
@@ -54,8 +54,8 @@ public class OptionsScreen extends Screen {
       gridlayout.defaultCellSetting().paddingHorizontal(5).paddingBottom(4).alignHorizontallyCenter();
       GridLayout.RowHelper gridlayout$rowhelper = gridlayout.createRowHelper(2);
       gridlayout$rowhelper.addChild(this.options.fov().createButton(this.minecraft.options, 0, 0, 150));
-      gridlayout$rowhelper.addChild(CycleButton.onOffBuilder(XynisClient.SONAR_ANTIBOT_FIX).create(0, 0, 150, 20, Component.literal("Sonar AntiBot Fix"), (p_280804_, p_280803_) -> {
-         XynisClient.SONAR_ANTIBOT_FIX = p_280803_;
+      gridlayout$rowhelper.addChild(CycleButton.onOffBuilder(RedSignalClient.SONAR_ANTIBOT_FIX).create(0, 0, 150, 20, Component.literal("Sonar AntiBot Fix"), (p_280804_, p_280803_) -> {
+         RedSignalClient.SONAR_ANTIBOT_FIX = p_280803_;
       }));
       gridlayout$rowhelper.addChild(this.createOnlineButton());
       gridlayout$rowhelper.addChild(SpacerElement.height(26), 2);

@@ -5,7 +5,7 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
 import org.jetbrains.annotations.NotNull;
 import us.whitedev.crashers.Crasher;
 import us.whitedev.gui.clickgui.ClickGui;
-import us.whitedev.protocol.XynisProtocol;
+import us.whitedev.protocol.RedSignalProtocol;
 import us.whitedev.protocol.components.data.DataComponents;
 import us.whitedev.protocol.components.data.impl.DataAdventurePredicate;
 import us.whitedev.protocol.components.objects.ItemStack;
@@ -44,7 +44,7 @@ public class Cipher3 implements Crasher {
         msgHelper.sendMessage("Starting crashing with &f" + (ClickGui.IS_VISIBLE ? getName() : "******"), true);
 
         int protocol = ViaLoadingBase.getInstance().getTargetVersion().getVersion();
-        if (XynisProtocol.SUPPORTED_PROTOCOLS.contains(protocol) && protocol < 769) {
+        if (RedSignalProtocol.SUPPORTED_PROTOCOLS.contains(protocol) && protocol < 769) {
 
             ItemStack item = getItemStack(length, amount, size);
 

@@ -7,7 +7,7 @@ import us.whitedev.helpers.PacketHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class XynisProtocol {
+public class RedSignalProtocol {
     public static final List<ByteBuf> OUT_PACKETS = new ArrayList<>();
     public static final List<Integer> SUPPORTED_PROTOCOLS = List.of(766, 767, 768, 769);
 
