@@ -31,7 +31,30 @@ public class MessageHelper {
             finalMessage = msg;
         }
 
-        Minecraft.getInstance().gui.getChat().addMessage(serializer(finalMessage));
+        Component comp = serializer(finalMessage);
+        try {
+            Object chat = Minecraft.getInstance().gui.getChat();
+            java.lang.reflect.Method m = null;
+            for (java.lang.reflect.Method method : chat.getClass().getMethods()) {
+                if ("addClientSystemMessage".equals(method.getName()) || "addMessage".equals(method.getName())) {
+                    if (method.getParameterCount() == 1) {
+                        m = method;
+                        break;
+                    }
+                }
+            }
+            if (m != null) {
+                m.invoke(chat, comp);
+            } else if (Minecraft.getInstance().player != null) {
+                Minecraft.getInstance().player.sendSystemMessage(comp);
+            }
+        } catch (Throwable t) {
+            try {
+                if (Minecraft.getInstance().player != null) {
+                    Minecraft.getInstance().player.sendSystemMessage(comp);
+                }
+            } catch (Throwable ignored) {}
+        }
     }
 
     public void sendSeparateLine() {

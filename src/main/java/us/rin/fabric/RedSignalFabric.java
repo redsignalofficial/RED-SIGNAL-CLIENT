@@ -2,7 +2,6 @@ package us.rin.fabric;
 
 import net.fabricmc.api.ClientModInitializer;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.List;
@@ -38,7 +37,13 @@ public class RedSignalFabric implements ClientModInitializer {
                     if ("allowSendChatMessage".equals(method.getName()) && args != null && args.length > 0) {
                         String message = (String) args[0];
                         if (message != null && message.startsWith("!")) {
-                            us.rin.commands.CommandManager.getManager().handleCommand(message);
+                            System.out.println("[RED SIGNAL CLIENT] Intercepted chat command: " + message);
+                            try {
+                                us.rin.commands.CommandManager.getManager().handleCommand(message);
+                            } catch (Throwable t) {
+                                System.out.println("[RED SIGNAL CLIENT] Error executing command: " + t);
+                                t.printStackTrace();
+                            }
                             return false;
                         }
                     }
@@ -46,10 +51,13 @@ public class RedSignalFabric implements ClientModInitializer {
                 }
             );
 
-            allowChatEvent.getClass().getMethod("register", Object.class).invoke(allowChatEvent, listener);
+            Class<?> eventClass = Class.forName("net.fabricmc.fabric.api.event.Event");
+            Method registerMethod = eventClass.getMethod("register", Object.class);
+            registerMethod.setAccessible(true);
+            registerMethod.invoke(allowChatEvent, listener);
             System.out.println("[RED SIGNAL CLIENT] Chat command interceptor registered successfully!");
         } catch (Throwable t) {
-            System.out.println("[RED SIGNAL CLIENT] Notice registering chat listener: " + t.getMessage());
+            System.out.println("[RED SIGNAL CLIENT] Notice registering chat listener: " + t);
         }
     }
 
@@ -73,10 +81,13 @@ public class RedSignalFabric implements ClientModInitializer {
                 }
             );
 
-            afterInitEvent.getClass().getMethod("register", Object.class).invoke(afterInitEvent, listener);
+            Class<?> eventClass = Class.forName("net.fabricmc.fabric.api.event.Event");
+            Method registerMethod = eventClass.getMethod("register", Object.class);
+            registerMethod.setAccessible(true);
+            registerMethod.invoke(afterInitEvent, listener);
             System.out.println("[RED SIGNAL CLIENT] TitleScreen UI customizer registered successfully!");
         } catch (Throwable t) {
-            System.out.println("[RED SIGNAL CLIENT] Notice registering screen listener: " + t.getMessage());
+            System.out.println("[RED SIGNAL CLIENT] Notice registering screen listener: " + t);
         }
     }
 
@@ -97,6 +108,7 @@ public class RedSignalFabric implements ClientModInitializer {
                 }
             }
             if (getWidgetsMethod == null) return;
+            getWidgetsMethod.setAccessible(true);
 
             List<?> widgets = (List<?>) getWidgetsMethod.invoke(null, screen);
             if (widgets == null) return;
@@ -160,6 +172,10 @@ public class RedSignalFabric implements ClientModInitializer {
 
     private void hookScreenDraw(Object screen, int px, int py, int pw, int ph, int sw, int sh, Class<?> screenEventsClass, Class<?> screensClass) {
         try {
+            Class<?> eventClass = Class.forName("net.fabricmc.fabric.api.event.Event");
+            Method registerMethod = eventClass.getMethod("register", Object.class);
+            registerMethod.setAccessible(true);
+
             Method afterBgMethod = null;
             Method afterExtractMethod = null;
             for (Method m : screenEventsClass.getMethods()) {
@@ -181,7 +197,7 @@ public class RedSignalFabric implements ClientModInitializer {
                         return null;
                     }
                 );
-                afterBgEvent.getClass().getMethod("register", Object.class).invoke(afterBgEvent, bgListener);
+                registerMethod.invoke(afterBgEvent, bgListener);
             }
 
             if (afterExtractMethod != null) {
@@ -198,7 +214,7 @@ public class RedSignalFabric implements ClientModInitializer {
                         return null;
                     }
                 );
-                afterExtractEvent.getClass().getMethod("register", Object.class).invoke(afterExtractEvent, extractListener);
+                registerMethod.invoke(afterExtractEvent, extractListener);
             }
 
         } catch (Throwable t) {
@@ -213,21 +229,24 @@ public class RedSignalFabric implements ClientModInitializer {
             fill(graphics, px, py, px + pw, py + ph, 0xDD101319);
             // Draw neon border outline
             outline(graphics, px, py, pw, ph, 0x446C7CFF);
-        } catch (Throwable ignored) {}
+        } catch (Throwable t) {
+            System.out.println("[RED SIGNAL CLIENT] drawCardBackground error: " + t);
+        }
     }
 
     private void drawCardForeground(Object graphics, Object screen, Class<?> screensClass, int px, int py, int pw, int ph, int sh) {
         if (graphics == null) return;
         try {
-            Object font = screensClass.getMethod("getFont", screen.getClass().getSuperclass()).invoke(null, screen);
-            if (font == null) {
-                for (Method m : screensClass.getMethods()) {
-                    if ("getFont".equals(m.getName())) {
-                        font = m.invoke(null, screen);
-                        break;
-                    }
+            Method getFontMethod = null;
+            for (Method m : screensClass.getMethods()) {
+                if ("getFont".equals(m.getName())) {
+                    getFontMethod = m;
+                    break;
                 }
             }
+            if (getFontMethod == null) return;
+            getFontMethod.setAccessible(true);
+            Object font = getFontMethod.invoke(null, screen);
             if (font == null) return;
 
             // Small caps header
@@ -242,7 +261,9 @@ public class RedSignalFabric implements ClientModInitializer {
             text(graphics, font, footer1, 12, sh - 22, 0xFF94A3B8);
             text(graphics, font, footer2, 12, sh - 12, 0xFF64748B);
 
-        } catch (Throwable ignored) {}
+        } catch (Throwable t) {
+            System.out.println("[RED SIGNAL CLIENT] drawCardForeground error: " + t);
+        }
     }
 
     private static String getWidgetText(Object widget) {
@@ -250,10 +271,12 @@ public class RedSignalFabric implements ClientModInitializer {
         try {
             for (Method m : widget.getClass().getMethods()) {
                 if ("getMessage".equals(m.getName()) && m.getParameterCount() == 0) {
+                    m.setAccessible(true);
                     Object msg = m.invoke(widget);
                     if (msg != null) {
                         try {
                             Method getString = msg.getClass().getMethod("getString");
+                            getString.setAccessible(true);
                             return ((String) getString.invoke(msg)).toLowerCase() + " " + msg.toString().toLowerCase();
                         } catch (Throwable t) {
                             return msg.toString().toLowerCase();
@@ -268,10 +291,10 @@ public class RedSignalFabric implements ClientModInitializer {
     private static void setWidgetBounds(Object widget, int x, int y, int w, int h) {
         try {
             for (Method m : widget.getClass().getMethods()) {
-                if ("setX".equals(m.getName()) && m.getParameterCount() == 1) m.invoke(widget, x);
-                if ("setY".equals(m.getName()) && m.getParameterCount() == 1) m.invoke(widget, y);
-                if ("setWidth".equals(m.getName()) && m.getParameterCount() == 1) m.invoke(widget, w);
-                if ("setHeight".equals(m.getName()) && m.getParameterCount() == 1) m.invoke(widget, h);
+                if ("setX".equals(m.getName()) && m.getParameterCount() == 1) { m.setAccessible(true); m.invoke(widget, x); }
+                if ("setY".equals(m.getName()) && m.getParameterCount() == 1) { m.setAccessible(true); m.invoke(widget, y); }
+                if ("setWidth".equals(m.getName()) && m.getParameterCount() == 1) { m.setAccessible(true); m.invoke(widget, w); }
+                if ("setHeight".equals(m.getName()) && m.getParameterCount() == 1) { m.setAccessible(true); m.invoke(widget, h); }
             }
         } catch (Throwable ignored) {}
     }
@@ -280,17 +303,21 @@ public class RedSignalFabric implements ClientModInitializer {
         try {
             for (Method m : graphics.getClass().getMethods()) {
                 if ("fill".equals(m.getName()) && m.getParameterCount() == 5 && m.getParameterTypes()[0] == int.class) {
+                    m.setAccessible(true);
                     m.invoke(graphics, x1, y1, x2, y2, color);
                     return;
                 }
             }
-        } catch (Throwable ignored) {}
+        } catch (Throwable t) {
+            System.out.println("[RED SIGNAL CLIENT] fill error: " + t);
+        }
     }
 
     private static void outline(Object graphics, int x, int y, int w, int h, int color) {
         try {
             for (Method m : graphics.getClass().getMethods()) {
                 if ("outline".equals(m.getName()) && m.getParameterCount() == 5) {
+                    m.setAccessible(true);
                     m.invoke(graphics, x, y, w, h, color);
                     return;
                 }
@@ -300,13 +327,16 @@ public class RedSignalFabric implements ClientModInitializer {
             fill(graphics, x, y + h - 1, x + w, y + h, color);
             fill(graphics, x, y + 1, x + 1, y + h - 1, color);
             fill(graphics, x + w - 1, y + 1, x + w, y + h - 1, color);
-        } catch (Throwable ignored) {}
+        } catch (Throwable t) {
+            System.out.println("[RED SIGNAL CLIENT] outline error: " + t);
+        }
     }
 
     private static void centeredText(Object graphics, Object font, String text, int x, int y, int color) {
         try {
             for (Method m : graphics.getClass().getMethods()) {
-                if ("centeredText".equals(m.getName()) && m.getParameterCount() == 5) {
+                if ("centeredText".equals(m.getName()) && m.getParameterCount() == 5 && m.getParameterTypes()[1] == String.class) {
+                    m.setAccessible(true);
                     m.invoke(graphics, font, text, x, y, color);
                     return;
                 }
@@ -316,24 +346,30 @@ public class RedSignalFabric implements ClientModInitializer {
             try {
                 for (Method m : font.getClass().getMethods()) {
                     if ("width".equals(m.getName()) && m.getParameterCount() == 1 && m.getParameterTypes()[0] == String.class) {
+                        m.setAccessible(true);
                         width = (int) m.invoke(font, text);
                         break;
                     }
                 }
             } catch (Throwable ignored) {}
             text(graphics, font, text, x - width / 2, y, color);
-        } catch (Throwable ignored) {}
+        } catch (Throwable t) {
+            System.out.println("[RED SIGNAL CLIENT] centeredText error: " + t);
+        }
     }
 
     private static void text(Object graphics, Object font, String text, int x, int y, int color) {
         try {
             for (Method m : graphics.getClass().getMethods()) {
                 if ("text".equals(m.getName()) && m.getParameterCount() == 5 && m.getParameterTypes()[1] == String.class) {
+                    m.setAccessible(true);
                     m.invoke(graphics, font, text, x, y, color);
                     return;
                 }
             }
-        } catch (Throwable ignored) {}
+        } catch (Throwable t) {
+            System.out.println("[RED SIGNAL CLIENT] text error: " + t);
+        }
     }
 
     public static String toSmallCaps(String text) {
