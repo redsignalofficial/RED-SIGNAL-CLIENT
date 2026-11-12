@@ -35,6 +35,7 @@ jobs:
 
       - name: Package Fabric Mod JAR
         run: |
+          pip install pillow
           python3 -c "
           import zipfile, io
           from PIL import Image
