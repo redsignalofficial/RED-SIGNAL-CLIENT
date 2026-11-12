@@ -36,15 +36,28 @@ jobs:
       - name: Package Fabric Mod JAR
         run: |
           python3 -c "
-          import zipfile
+          import zipfile, io
+          from PIL import Image
+
           src = 'build/libs/RED-SIGNAL-CLIENT-6.4.jar'
           dst = 'build/libs/RED-SIGNAL-CLIENT-Fabric.jar'
+          bg_path = 'src/main/resources/client/images/background.png'
+
+          # Convert custom background to square panorama textures for Minecraft title screen
+          im = Image.open(bg_path).convert('RGB')
+          im_square = im.resize((1024, 1024), Image.Resampling.LANCZOS)
+          buf = io.BytesIO()
+          im_square.save(buf, format='PNG')
+          pano_bytes = buf.getvalue()
+
           with zipfile.ZipFile(src, 'r') as z_in, zipfile.ZipFile(dst, 'w', compression=zipfile.ZIP_DEFLATED) as z_out:
               for item in z_in.infolist():
                   fn = item.filename
-                  if (fn.startswith('net/minecraft/') or 
-                      fn.startswith('com/mojang/') or 
-                      fn.startswith('net/minecraftforge/') or
+                  # Retain ResourceLocation for compatibility on newer Minecraft versions
+                  if fn.startswith('net/minecraft/') and not fn.startswith('net/minecraft/resources/ResourceLocation'):
+                      continue
+                  if (fn.startswith('com/mojang/') or 
+                      fn.startswith('net/minecraftforge/') or 
                       fn.startswith('assets/minecraft/') or 
                       fn.startswith('assets/realms/') or 
                       fn.startswith('data/') or
@@ -54,7 +67,12 @@ jobs:
                       fn.startswith('win-x86/')):
                       continue
                   z_out.writestr(item, z_in.read(fn))
-          print('Fabric mod jar created successfully!')
+
+              # Inject custom background as TitleScreen panorama
+              for i in range(6):
+                  z_out.writestr(f'assets/minecraft/textures/gui/title/background/panorama_{i}.png', pano_bytes)
+
+          print('Fabric mod jar created successfully with custom panorama background!')
           "
 
       - name: Upload build artifact

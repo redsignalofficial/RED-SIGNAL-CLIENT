@@ -11,7 +11,7 @@
     "homepage": "https://github.com/redsignalofficial/RED-SIGNAL-CLIENT"
   },
   "license": "MIT",
-  "icon": "client/images/logo.png",
+  "icon": "assets/redsignal/icon.png",
   "environment": "client",
   "entrypoints": {
     "client": [

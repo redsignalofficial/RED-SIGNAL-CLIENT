@@ -106,28 +106,32 @@ public class RedSignalClient {
                 new Banshee2()
         );
         log("Registration Crash Exploits...");
-        ExploitManager.getManager().addExploit(
-                new BungeeExploit(),
-                new ConsoleSpammer(),
-                new CommandsExploit(),
-                new EntityExploit(),
-                new EssentialsExploit(),
-                new FaweExploit(),
-                new ForceOpExploit(),
-                new Log4JExploit(),
-                new LuckPermsExploit(),
-                new BundleExploit(),
-                new MVCExploit(),
-                new PexExploit(),
-                new SignExploit(),
-                new PluginExploit(),
-                new LogsExploit(),
-                new LPXExploit(),
-                new WorldEditExploit(),
-                new PVExploit(),
-                new PurpurExploit(),
-                new ModernSignExploit()
-        );
+        try {
+            ExploitManager.getManager().addExploit(
+                    new BungeeExploit(),
+                    new ConsoleSpammer(),
+                    new CommandsExploit(),
+                    new EntityExploit(),
+                    new EssentialsExploit(),
+                    new FaweExploit(),
+                    new ForceOpExploit(),
+                    new Log4JExploit(),
+                    new LuckPermsExploit(),
+                    new BundleExploit(),
+                    new MVCExploit(),
+                    new PexExploit(),
+                    new SignExploit(),
+                    new PluginExploit(),
+                    new LogsExploit(),
+                    new LPXExploit(),
+                    new WorldEditExploit(),
+                    new PVExploit(),
+                    new PurpurExploit(),
+                    new ModernSignExploit()
+            );
+        } catch (Throwable t) {
+            log("Exploits registration notice: " + t);
+        }
 
         try {
             registerCustomImages();
