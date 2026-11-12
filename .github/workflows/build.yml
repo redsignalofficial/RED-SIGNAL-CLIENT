@@ -31,7 +31,31 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build with Gradle
-        run: ./gradlew build --stacktrace
+        run: ./gradlew shadowJar --stacktrace
+
+      - name: Package Fabric Mod JAR
+        run: |
+          python3 -c "
+          import zipfile
+          src = 'build/libs/RED-SIGNAL-CLIENT-6.4.jar'
+          dst = 'build/libs/RED-SIGNAL-CLIENT-Fabric.jar'
+          with zipfile.ZipFile(src, 'r') as z_in, zipfile.ZipFile(dst, 'w', compression=zipfile.ZIP_DEFLATED) as z_out:
+              for item in z_in.infolist():
+                  fn = item.filename
+                  if (fn.startswith('net/minecraft/') or 
+                      fn.startswith('com/mojang/') or 
+                      fn.startswith('net/minecraftforge/') or
+                      fn.startswith('assets/minecraft/') or 
+                      fn.startswith('assets/realms/') or 
+                      fn.startswith('data/') or
+                      fn.startswith('linux/') or
+                      fn.startswith('darwin/') or
+                      fn.startswith('win-x64/') or
+                      fn.startswith('win-x86/')):
+                      continue
+                  z_out.writestr(item, z_in.read(fn))
+          print('Fabric mod jar created successfully!')
+          "
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4

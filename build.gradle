@@ -145,23 +145,4 @@ shadowJar {
     }
 }
 
-task fabricJar(type: Jar, dependsOn: shadowJar) {
-    archiveBaseName.set('RED-SIGNAL-CLIENT-Fabric')
-    archiveClassifier.set('')
-    archiveVersion.set('')
-    from(zipTree(shadowJar.archiveFile)) {
-        exclude 'net/minecraft/**'
-        exclude 'com/mojang/**'
-        exclude 'net/minecraftforge/**'
-        exclude 'assets/minecraft/**'
-        exclude 'assets/realms/**'
-        exclude 'data/**'
-        exclude 'linux/**'
-        exclude 'darwin/**'
-        exclude 'win-x64/**'
-        exclude 'win-x86/**'
-    }
-}
-
 build.dependsOn shadowJar
-build.dependsOn fabricJar
