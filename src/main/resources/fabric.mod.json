@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "redsignal",
+  "version": "6.4",
+  "name": "RED SIGNAL CLIENT",
+  "description": "Exclusive Minecraft Crash/Exploit Client",
+  "authors": [
+    "Rin"
+  ],
+  "contact": {
+    "homepage": "https://github.com/redsignalofficial/RED-SIGNAL-CLIENT"
+  },
+  "license": "MIT",
+  "icon": "client/images/logo.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "us.rin.fabric.RedSignalFabric"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.14.0"
+  }
+}
