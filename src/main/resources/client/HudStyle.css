@@ -1,0 +1,151 @@
+hud {
+    width: 340;
+    offset-x: 12;
+    offset-y: 14;
+    screen-anchor: hud-place;
+    scale: 0.88;
+    reference-gui-scale: 2;
+    auto-scale: true;
+}
+
+box.shadow {
+    x: 3;
+    y: 3;
+    width: 334;
+    height: 150;
+    radius: 22;
+    background-color: rgba(0,0,0,120);
+    z-index: 0;
+}
+
+box.main {
+    x: 0;
+    y: 0;
+    width: 334;
+    height: 150;
+    radius: 20;
+    background-color: rgba(10,12,18,220);
+    border-color: theme;
+    border-size: 2;
+    z-index: 1;
+}
+
+box.top-band {
+    x: 14;
+    y: 14;
+    width: 306;
+    height: 52;
+    radius: 16;
+    background-color: rgba(20,24,34,235);
+    border-color: #FF1F2937;
+    border-size: 1;
+    z-index: 2;
+}
+
+box.icon-frame {
+    x: 20;
+    y: 18;
+    width: 38;
+    height: 38;
+    radius: 12;
+    background-color: rgba(255,255,255,15);
+    border-color: theme;
+    border-size: 1;
+    z-index: 3;
+}
+
+image.brand {
+    x: 23;
+    y: 21;
+    width: 30;
+    height: 30;
+    path: "resource:/client/images/logo.png";
+    z-index: 4;
+}
+
+box.icon-mask {
+    x: 20;
+    y: 18;
+    width: 38;
+    height: 38;
+    radius: 12;
+    background-color: rgba(10,12,18,200);
+    z-index: 5;
+}
+
+line.title {
+    x: 70;
+    y: 8;
+    align: left;
+    z-index: 10;
+
+    segment: "XynisClient "|theme|true|18;
+    segment: "${version}"|#FFBFC7D5|false|16;
+}
+
+line.subtitle {
+    x: 70;
+    y: 36;
+    align: left;
+    z-index: 11;
+
+    segment: "The Best Minecraft Crash and Exploit Client"|#FF9CA3AF|false|10;
+}
+
+box.stats-panel {
+    x: 14;
+    y: 74;
+    width: 306;
+    height: 64;
+    radius: 16;
+    background-color: rgba(15,18,26,210);
+    border-color: #FF1F2937;
+    border-size: 1;
+    z-index: 2;
+}
+
+metric-list.primary {
+    x: 26;
+    y: 86;
+    width: 150;
+    row-height: 17;
+
+    separator: " > ";
+    separator-color: #FF475569;
+
+    label-color: #FFE2E8F0;
+    label-bold: true;
+    label-size: 11;
+
+    value-color: theme;
+    value-size: 11;
+
+    z-index: 20;
+
+    item: "IP"|IP|theme|true;
+    item: "Engine"|ENGINE|theme|true;
+    item: "Last Packet"|LAST_PACKET|packet-status|true;
+}
+
+metric-list.secondary {
+    x: 190;
+    y: 86;
+    width: 120;
+    row-height: 17;
+
+    separator: " > ";
+    separator-color: #FF475569;
+
+    label-color: #FFE2E8F0;
+    label-bold: true;
+    label-size: 11;
+
+    value-color: theme;
+    value-size: 11;
+
+    z-index: 20;
+
+    item: "XYZ"|XYZ|theme|true;
+    item: "FPS"|FPS|theme|true;
+    item: "PPS"|PPS|theme|true;
+}
