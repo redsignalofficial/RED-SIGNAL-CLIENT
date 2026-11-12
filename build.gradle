@@ -65,12 +65,15 @@ dependencies {
     // ViaVersion
     compileOnly 'com.viaversion:viaversion-api:4.9.2'
     compileOnly 'com.viaversion:viaversion:4.9.2'
-    compileOnly 'com.viaversion:viabackwards-api:4.9.1'
+    compileOnly 'com.viaversion:viabackwards-common:4.9.1'
     compileOnly 'com.viaversion:viabackwards:4.9.1'
-    compileOnly 'com.viaversion:viarewind-api:3.0.5'
+    compileOnly 'com.viaversion:viarewind-common:3.0.5'
 
     // MCProtocolLib (steveice10)
-    compileOnly 'com.github.GeyserMC:MCProtocolLib:1.20.4-2-SNAPSHOT'
+    compileOnly 'com.github.steveice10:MCProtocolLib:1.20-1'
+
+    // macOS ObjC Bridge
+    compileOnly 'ca.weblite:java-objc-bridge:1.1'
 
     // Adventure (Kyori)
     compileOnly 'net.kyori:adventure-api:4.14.0'
