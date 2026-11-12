@@ -23,7 +23,9 @@ public class PacketHelper {
     private static int packetsPerSecondTemp = 0;
     public static int packetReceived = 0;
     public static int packetSent = 0;
-    private static final Minecraft mc = Minecraft.getInstance();
+    private static Minecraft getMc() {
+        return Minecraft.getInstance();
+    }
 
     public static void onPacketReceive(Packet<?> event) {
         lastTps = tps;
@@ -127,19 +129,19 @@ public class PacketHelper {
     }
 
     public static void send(Packet<?> packet){
-        if(isPlayerConnected()) mc.getConnection().send(packet);
+        if(isPlayerConnected() && getMc() != null) getMc().getConnection().send(packet);
     }
 
     public static void sendChat(String message){
-        if(isPlayerConnected()) mc.getConnection().sendChat(message);
+        if(isPlayerConnected() && getMc() != null) getMc().getConnection().sendChat(message);
     }
 
     public static void sendCommand(String message){
-        if(isPlayerConnected()) mc.getConnection().sendCommand(message);
+        if(isPlayerConnected() && getMc() != null) getMc().getConnection().sendCommand(message);
     }
 
     private static boolean isPlayerConnected(){
-        return mc.getConnection() != null && mc.getConnection().getConnection().isConnected();
+        return getMc() != null && getMc().getConnection() != null && getMc().getConnection().getConnection().isConnected();
     }
 
 }

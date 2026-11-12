@@ -20,8 +20,24 @@ public class ClientConfigHelper {
 
     public static final Map<String, Integer> MODULE_BINDS = new HashMap<>();
 
-    private final File configFile = new File(Minecraft.getInstance().gameDirectory, "VisualConfig.ser");
-    private final File customHexFile = new File(Minecraft.getInstance().gameDirectory, "VisualConfig_Custom.txt");
+    private File getGameDir() {
+        File dir = null;
+        try {
+            if (Minecraft.getInstance() != null && Minecraft.getInstance().gameDirectory != null) {
+                dir = Minecraft.getInstance().gameDirectory;
+            }
+        } catch (Throwable ignored) {}
+        if (dir == null) dir = new File(".");
+        return dir;
+    }
+
+    private File getConfigFile() {
+        return new File(getGameDir(), "VisualConfig.ser");
+    }
+
+    private File getCustomHexFile() {
+        return new File(getGameDir(), "VisualConfig_Custom.txt");
+    }
 
     public void saveClientConfig() {
         ClientConfig config = new ClientConfig();
@@ -38,13 +54,15 @@ public class ClientConfigHelper {
         config.moduleBinds.putAll(MODULE_BINDS);
 
         try {
-            if (!configFile.getParentFile().exists()) {
-                configFile.getParentFile().mkdirs();
+            File cFile = getConfigFile();
+            File hexFile = getCustomHexFile();
+            if (cFile.getParentFile() != null && !cFile.getParentFile().exists()) {
+                cFile.getParentFile().mkdirs();
             }
-            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(configFile))) {
+            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(cFile))) {
                 oos.writeObject(config);
             }
-            Files.writeString(customHexFile.toPath(), ClickGui.CUSTOM_HEX);
+            Files.writeString(hexFile.toPath(), ClickGui.CUSTOM_HEX);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -52,17 +70,19 @@ public class ClientConfigHelper {
 
     @SuppressWarnings("unchecked")
     public void readClientConfig() {
-        if (customHexFile.exists()) {
+        File hexFile = getCustomHexFile();
+        File cFile = getConfigFile();
+        if (hexFile.exists()) {
             try {
-                String hex = Files.readString(customHexFile.toPath()).trim();
+                String hex = Files.readString(hexFile.toPath()).trim();
                 if (!hex.isEmpty()) ClickGui.CUSTOM_HEX = hex;
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
-        if (configFile.exists()) {
-            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(configFile))) {
+        if (cFile.exists()) {
+            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(cFile))) {
                 ClientConfig config = (ClientConfig) ois.readObject();
 
                 HudOptions.getMap().clear();

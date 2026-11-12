@@ -37,18 +37,22 @@ public class RedSignalClient {
         return redSignalClient;
     }
 
+    public static void log(String msg) {
+        System.out.println("[RED SIGNAL CLIENT] " + msg);
+    }
+
     public void start() {
         try {
             ViaMCP.create();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Throwable e) {
+            log("ViaMCP notice: " + e.getMessage());
         }
-        Minecraft.LOGGER.info("RedSignalClient Initialization...");
+        log("RedSignalClient Initialization...");
         initializeClient();
     }
 
     private void initializeClient() {
-        Minecraft.LOGGER.info("Registration Commands...");
+        log("Registration Commands...");
         CommandManager.getManager().addCommands(
                 new StopCommand(),
                 new AuthorsCommand(),
@@ -63,7 +67,7 @@ public class RedSignalClient {
                 new PlayerListCommand(),
                 new PluginListCommand()
         );
-        Minecraft.LOGGER.info("Registration Crash Methods...");
+        log("Registration Crash Methods...");
         CrashManager.getManager().addMethod(
                 new Strong1(),
                 new Rogue1(),
@@ -101,7 +105,7 @@ public class RedSignalClient {
                 new Typhoon1(),
                 new Banshee2()
         );
-        Minecraft.LOGGER.info("Registration Crash Exploits...");
+        log("Registration Crash Exploits...");
         ExploitManager.getManager().addExploit(
                 new BungeeExploit(),
                 new ConsoleSpammer(),
@@ -124,58 +128,91 @@ public class RedSignalClient {
                 new PurpurExploit(),
                 new ModernSignExploit()
         );
-        registerCustomImages();
+
+        try {
+            registerCustomImages();
+        } catch (Throwable t) {
+            log("Custom image registration deferred: " + t.getMessage());
+        }
 
         try {
             new DiscordRP().runDiscordRP();
         } catch (Throwable t) {
-            Minecraft.LOGGER.warn("DiscordRP disabled: " + t.getMessage());
+            log("DiscordRP disabled: " + t.getMessage());
         }
 
-        Minecraft.LOGGER.info("Loading visuals...");
-        clientConfigHelper.readClientConfig();
-        Minecraft.LOGGER.info("Loading accounts...");
-        accountHelper.loadAccounts();
+        log("Loading visuals...");
+        try {
+            clientConfigHelper.readClientConfig();
+        } catch (Throwable t) {
+            log("Client config load notice: " + t.getMessage());
+        }
+
+        log("Loading accounts...");
+        try {
+            accountHelper.loadAccounts();
+        } catch (Throwable t) {
+            log("Accounts load notice: " + t.getMessage());
+        }
 
         if (ClientConfigHelper.LAST_LOGIN_WAS_OFFLINE && ClientConfigHelper.LAST_OFFLINE_NICK != null && !ClientConfigHelper.LAST_OFFLINE_NICK.isBlank()) {
-            Minecraft.LOGGER.info("Auto offline login: " + ClientConfigHelper.LAST_OFFLINE_NICK);
-            accountHelper.offlineLogin(ClientConfigHelper.LAST_OFFLINE_NICK);
+            log("Auto offline login: " + ClientConfigHelper.LAST_OFFLINE_NICK);
+            try {
+                accountHelper.offlineLogin(ClientConfigHelper.LAST_OFFLINE_NICK);
+            } catch (Throwable t) {
+                log("Offline login deferred: " + t.getMessage());
+            }
         }
 
-        Minecraft.LOGGER.info("Loading configs...");
-        configHelper.readBypassList();
-        Minecraft.LOGGER.info("Loading favorites...");
-        FavoritesManager.load();
-        Minecraft.LOGGER.info("Running JavaFx Fixer...");
+        log("Loading configs...");
+        try {
+            configHelper.readBypassList();
+        } catch (Throwable t) {
+            log("Config bypass notice: " + t.getMessage());
+        }
+
+        log("Loading favorites...");
+        try {
+            FavoritesManager.load();
+        } catch (Throwable t) {
+            log("Favorites load notice: " + t.getMessage());
+        }
+
+        log("Running JavaFx Fixer...");
         try {
             FxFixer.runFxFixer();
         } catch (Throwable t) {
-            Minecraft.LOGGER.warn("JavaFX Fixer skipped: " + t.getMessage());
+            log("JavaFX Fixer skipped: " + t.getMessage());
         }
     }
 
     private void registerCustomImages() {
-        Minecraft.LOGGER.info("Registration Custom Images...");
+        log("Registration Custom Images...");
 
-        Map<String, String> imagesToRegister = Map.of(
-                "/client/images/background.png", "textures/gui/custom_background.png",
-                "/client/images/cape.png", "textures/client/cape.png"
-        );
+        try {
+            Map<String, String> imagesToRegister = Map.of(
+                    "/client/images/background.png", "textures/gui/custom_background.png",
+                    "/client/images/cape.png", "textures/client/cape.png"
+            );
 
-        imagesToRegister.forEach((image, mcImageLoc) -> {
-            InputStream inputStream = Main.class.getResourceAsStream(image);
-            try {
-                if (inputStream != null) {
-                    NativeImage nativeImage = NativeImage.read(inputStream);
-                    ResourceLocation customBackground = new ResourceLocation("redsignal", mcImageLoc);
-                    Minecraft.getInstance().getTextureManager().register(customBackground, new DynamicTexture(nativeImage));
-                    inputStream.close();
+            imagesToRegister.forEach((image, mcImageLoc) -> {
+                try {
+                    InputStream inputStream = Main.class.getResourceAsStream(image);
+                    if (inputStream != null) {
+                        NativeImage nativeImage = NativeImage.read(inputStream);
+                        ResourceLocation customBackground = new ResourceLocation("redsignal", mcImageLoc);
+                        if (Minecraft.getInstance() != null && Minecraft.getInstance().getTextureManager() != null) {
+                            Minecraft.getInstance().getTextureManager().register(customBackground, new DynamicTexture(nativeImage));
+                        }
+                        inputStream.close();
+                    }
+                } catch (Throwable e) {
+                    log("Image load notice: " + e.getMessage());
                 }
-            } catch (IOException e) {
-                Minecraft.LOGGER.info("Error while reading image!");
-                e.printStackTrace();
-            }
-        });
+            });
+        } catch (Throwable t) {
+            log("Image subsystem notice: " + t.getMessage());
+        }
     }
 
     public String getTitle() {

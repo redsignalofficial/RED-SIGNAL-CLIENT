@@ -28,7 +28,17 @@ import java.util.stream.Collectors;
 public class AccountHelper {
     public static final List<SavedAccount> accounts = new ArrayList<>();
     private final Gson gson = new Gson();
-    private final File accountFile = new File(Minecraft.getInstance().gameDirectory, "accounts.json");
+
+    private File getAccountFile() {
+        File dir = null;
+        try {
+            if (Minecraft.getInstance() != null && Minecraft.getInstance().gameDirectory != null) {
+                dir = Minecraft.getInstance().gameDirectory;
+            }
+        } catch (Throwable ignored) {}
+        if (dir == null) dir = new File(".");
+        return new File(dir, "accounts.json");
+    }
 
     public static class SavedAccount {
         public String username;
@@ -67,7 +77,7 @@ public class AccountHelper {
     }
 
     public void saveAccounts() {
-        try (Writer writer = new FileWriter(accountFile)) {
+        try (Writer writer = new FileWriter(getAccountFile())) {
             Gson gsonPretty = new GsonBuilder().setPrettyPrinting().create();
             gsonPretty.toJson(accounts, writer);
         } catch (IOException e) {
@@ -76,9 +86,10 @@ public class AccountHelper {
     }
 
     public void loadAccounts() {
-        if (!accountFile.exists()) return;
+        File f = getAccountFile();
+        if (!f.exists()) return;
 
-        try (Reader reader = new FileReader(accountFile)) {
+        try (Reader reader = new FileReader(f)) {
             Type listType = new TypeToken<List<SavedAccount>>(){}.getType();
             List<SavedAccount> loaded = gson.fromJson(reader, listType);
 

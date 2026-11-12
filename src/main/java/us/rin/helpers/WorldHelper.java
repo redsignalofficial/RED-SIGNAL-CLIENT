@@ -15,9 +15,9 @@ import net.minecraft.world.level.Level;
 import java.util.Objects;
 
 public class WorldHelper {
-    private static final Minecraft mc = Minecraft.getInstance();
-
     public static void reloadWorldFix(){
+        Minecraft mc = Minecraft.getInstance();
+        if (mc == null) return;
         LocalPlayer player = mc.player;
         ClientLevel clientLevel = mc.level;
         MultiPlayerGameMode gameMode = mc.gameMode;
