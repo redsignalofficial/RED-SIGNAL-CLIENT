@@ -317,11 +317,11 @@ import net.minecraft.world.scores.criteria.ObjectiveCriteria;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.slf4j.Logger;
-import us.whitedev.commands.impl.PlayerListCommand;
-import us.whitedev.commands.impl.PluginListCommand;
-import us.whitedev.helpers.MessageHelper;
-import us.whitedev.helpers.PacketHelper;
-import us.whitedev.helpers.WorldHelper;
+import us.rin.commands.impl.PlayerListCommand;
+import us.rin.commands.impl.PluginListCommand;
+import us.rin.helpers.MessageHelper;
+import us.rin.helpers.PacketHelper;
+import us.rin.helpers.WorldHelper;
 
 @OnlyIn(Dist.CLIENT)
 public class ClientPacketListener implements TickablePacketListener, ClientGamePacketListener {

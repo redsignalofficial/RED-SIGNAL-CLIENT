@@ -10,8 +10,8 @@ import net.minecraft.network.protocol.PacketFlow;
 import net.minecraft.util.profiling.jfr.JvmProfiler;
 import org.apache.commons.lang3.RandomUtils;
 import org.slf4j.Logger;
-import us.whitedev.helpers.ExceptionPacket;
-import us.whitedev.helpers.PacketHelper;
+import us.rin.helpers.ExceptionPacket;
+import us.rin.helpers.PacketHelper;
 
 public class PacketEncoder extends MessageToByteEncoder<Packet<?>> {
    private static final Logger LOGGER = LogUtils.getLogger();

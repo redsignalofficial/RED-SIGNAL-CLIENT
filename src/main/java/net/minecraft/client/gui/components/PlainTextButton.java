@@ -8,8 +8,8 @@ import net.minecraft.network.chat.Style;
 import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import us.whitedev.gui.clickgui.ClickGui;
-import us.whitedev.gui.common.RenderUtils;
+import us.rin.gui.clickgui.ClickGui;
+import us.rin.gui.common.RenderUtils;
 
 @OnlyIn(Dist.CLIENT)
 public class PlainTextButton extends Button {

@@ -16,7 +16,7 @@ import net.minecraft.util.ExtraCodecs;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DyeColor;
-import us.whitedev.commands.impl.ExploitCommand;
+import us.rin.commands.impl.ExploitCommand;
 
 public class SignText {
    private static final Codec<Component[]> LINES_CODEC = ExtraCodecs.FLAT_COMPONENT.listOf().comapFlatMap((p_277790_) -> {

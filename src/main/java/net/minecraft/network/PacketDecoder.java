@@ -10,7 +10,7 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.PacketFlow;
 import net.minecraft.util.profiling.jfr.JvmProfiler;
 import org.slf4j.Logger;
-import us.whitedev.helpers.PacketHelper;
+import us.rin.helpers.PacketHelper;
 
 public class PacketDecoder extends ByteToMessageDecoder {
    private static final Logger LOGGER = LogUtils.getLogger();

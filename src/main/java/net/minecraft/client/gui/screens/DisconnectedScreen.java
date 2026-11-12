@@ -10,7 +10,7 @@ import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import us.whitedev.helpers.ReconnectManager;
+import us.rin.helpers.ReconnectManager;
 
 @OnlyIn(Dist.CLIENT)
 public class DisconnectedScreen extends Screen {

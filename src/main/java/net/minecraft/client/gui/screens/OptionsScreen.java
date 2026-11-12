@@ -23,7 +23,7 @@ import net.minecraft.server.packs.repository.PackRepository;
 import net.minecraft.world.Difficulty;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import us.whitedev.RedSignalClient;
+import us.rin.RedSignalClient;
 
 @OnlyIn(Dist.CLIENT)
 public class OptionsScreen extends Screen {

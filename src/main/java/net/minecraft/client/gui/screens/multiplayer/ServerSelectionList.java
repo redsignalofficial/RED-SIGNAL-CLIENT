@@ -44,8 +44,8 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.slf4j.Logger;
 
-import us.whitedev.gui.clickgui.ClickGui;
-import us.whitedev.gui.common.RenderUtils;
+import us.rin.gui.clickgui.ClickGui;
+import us.rin.gui.common.RenderUtils;
 
 import java.awt.*;
 

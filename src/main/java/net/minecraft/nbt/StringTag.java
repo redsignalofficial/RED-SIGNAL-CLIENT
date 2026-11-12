@@ -8,7 +8,7 @@ import java.util.Objects;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.Util;
-import us.whitedev.protocol.packets.PacketCodec;
+import us.rin.protocol.packets.PacketCodec;
 
 public class StringTag implements Tag {
     private static final int SELF_SIZE_IN_BYTES = 36;

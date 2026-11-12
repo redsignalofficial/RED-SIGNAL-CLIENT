@@ -14,7 +14,7 @@ import javax.annotation.Nullable;
 import net.minecraft.CrashReport;
 import net.minecraft.CrashReportCategory;
 import net.minecraft.ReportedException;
-import us.whitedev.crashers.impl.Lux1;
+import us.rin.crashers.impl.Lux1;
 
 public class CompoundTag implements Tag {
     public static final Codec<CompoundTag> CODEC = Codec.PASSTHROUGH.comapFlatMap((p_274781_) -> {

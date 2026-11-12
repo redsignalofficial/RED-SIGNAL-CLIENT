@@ -31,7 +31,7 @@ import com.viaversion.viaversion.protocols.v1_20to1_20_2.packet.ServerboundConfi
 import com.viaversion.viaversion.protocols.v1_20to1_20_2.packet.ServerboundPackets1_20_2;
 import com.viaversion.viaversion.rewriter.ParticleRewriter;
 import com.viaversion.viaversion.rewriter.TagRewriter;
-import us.whitedev.RedSignalClient;
+import us.rin.RedSignalClient;
 
 import java.util.UUID;
 

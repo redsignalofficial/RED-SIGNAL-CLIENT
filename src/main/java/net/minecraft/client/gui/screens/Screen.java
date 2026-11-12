@@ -53,7 +53,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.slf4j.Logger;
-import us.whitedev.gui.clickgui.ClickGui;
+import us.rin.gui.clickgui.ClickGui;
 
 @OnlyIn(Dist.CLIENT)
 public abstract class Screen extends AbstractContainerEventHandler implements Renderable {

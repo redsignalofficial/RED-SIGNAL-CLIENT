@@ -37,11 +37,11 @@ import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.slf4j.Logger;
-import us.whitedev.gui.clickgui.ClickGui;
-import us.whitedev.gui.common.CustomButton;
-import us.whitedev.gui.common.CustomUi;
-import us.whitedev.gui.common.RenderUtils;
-import us.whitedev.helpers.ReconnectManager;
+import us.rin.gui.clickgui.ClickGui;
+import us.rin.gui.common.CustomButton;
+import us.rin.gui.common.CustomUi;
+import us.rin.gui.common.RenderUtils;
+import us.rin.helpers.ReconnectManager;
 
 import java.awt.*;
 

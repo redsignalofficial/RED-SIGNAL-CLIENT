@@ -2,7 +2,7 @@ package net.minecraft.nbt;
 
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
-import us.whitedev.crashers.impl.Lux1;
+import us.rin.crashers.impl.Lux1;
 
 import java.io.DataInput;
 import java.io.DataOutput;

@@ -232,9 +232,9 @@ import org.apache.commons.io.FileUtils;
 import org.joml.Matrix4f;
 import org.lwjgl.util.tinyfd.TinyFileDialogs;
 import org.slf4j.Logger;
-import us.whitedev.RedSignalClient;
-import us.whitedev.gui.clickgui.ClickGui;
-import us.whitedev.helpers.PacketHelper;
+import us.rin.RedSignalClient;
+import us.rin.gui.clickgui.ClickGui;
+import us.rin.helpers.PacketHelper;
 
 @OnlyIn(Dist.CLIENT)
 public class Minecraft extends ReentrantBlockableEventLoop<Runnable> implements WindowEventHandler {

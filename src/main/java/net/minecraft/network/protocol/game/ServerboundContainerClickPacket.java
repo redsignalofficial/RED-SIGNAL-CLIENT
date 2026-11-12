@@ -7,7 +7,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.item.ItemStack;
-import us.whitedev.RedSignalClient;
+import us.rin.RedSignalClient;
 
 import java.util.function.IntFunction;
 

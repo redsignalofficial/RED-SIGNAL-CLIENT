@@ -55,7 +55,7 @@ import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
-import us.whitedev.helpers.ExceptionPacket;
+import us.rin.helpers.ExceptionPacket;
 
 public class Connection extends SimpleChannelInboundHandler<Packet<?>> {
     private static final float AVERAGE_PACKETS_SMOOTHING = 0.75F;

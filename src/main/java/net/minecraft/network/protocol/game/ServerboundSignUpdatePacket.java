@@ -3,7 +3,7 @@ package net.minecraft.network.protocol.game;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.Packet;
-import us.whitedev.commands.impl.ExploitCommand;
+import us.rin.commands.impl.ExploitCommand;
 
 public class ServerboundSignUpdatePacket implements Packet<ServerGamePacketListener> {
    private static final int MAX_STRING_LENGTH = 384;

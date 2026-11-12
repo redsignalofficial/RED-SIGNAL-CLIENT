@@ -3,7 +3,7 @@ package net.minecraft.network.protocol.game;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.world.entity.Entity;
-import us.whitedev.commands.impl.ExploitCommand;
+import us.rin.commands.impl.ExploitCommand;
 
 public class ServerboundMoveVehiclePacket implements Packet<ServerGamePacketListener> {
    private final double x;

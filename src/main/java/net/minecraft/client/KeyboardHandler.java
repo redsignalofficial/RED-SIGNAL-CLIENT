@@ -43,7 +43,7 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import us.whitedev.helpers.ClientConfigHelper;
+import us.rin.helpers.ClientConfigHelper;
 
 @OnlyIn(Dist.CLIENT)
 public class KeyboardHandler {

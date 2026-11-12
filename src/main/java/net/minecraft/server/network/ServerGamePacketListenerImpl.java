@@ -181,7 +181,7 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.slf4j.Logger;
-import us.whitedev.helpers.MessageHelper;
+import us.rin.helpers.MessageHelper;
 
 public class ServerGamePacketListenerImpl implements ServerPlayerConnection, TickablePacketListener, ServerGamePacketListener {
    static final Logger LOGGER = LogUtils.getLogger();

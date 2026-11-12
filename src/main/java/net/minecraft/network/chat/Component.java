@@ -40,7 +40,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.util.LowerCaseEnumTypeAdapterFactory;
-import us.whitedev.gui.clickgui.ClickGui;
+import us.rin.gui.clickgui.ClickGui;
 
 public interface Component extends Message, FormattedText {
    Style getStyle();

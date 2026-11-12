@@ -26,7 +26,7 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageEncoder;
-import us.whitedev.protocol.RedSignalProtocol;
+import us.rin.protocol.RedSignalProtocol;
 
 import java.util.List;
 

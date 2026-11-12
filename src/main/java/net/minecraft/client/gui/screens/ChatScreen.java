@@ -17,7 +17,7 @@ import net.minecraft.util.StringUtil;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.apache.commons.lang3.StringUtils;
-import us.whitedev.commands.CommandManager;
+import us.rin.commands.CommandManager;
 
 @OnlyIn(Dist.CLIENT)
 public class ChatScreen extends Screen {

@@ -73,9 +73,9 @@ import net.minecraft.world.scores.Score;
 import net.minecraft.world.scores.Scoreboard;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import us.whitedev.gui.clickgui.ClickGui;
-import us.whitedev.gui.common.RenderUtils;
-import us.whitedev.gui.hud.HudRenderer;
+import us.rin.gui.clickgui.ClickGui;
+import us.rin.gui.common.RenderUtils;
+import us.rin.gui.hud.HudRenderer;
 
 @OnlyIn(Dist.CLIENT)
 public class Gui {

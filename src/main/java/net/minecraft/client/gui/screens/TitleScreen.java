@@ -32,14 +32,14 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import us.whitedev.RedSignalClient;
-import us.whitedev.gui.clickgui.ClickGui;
-import us.whitedev.gui.clickgui.components.WelcomeComponent;
-import us.whitedev.gui.common.CustomUi;
-import us.whitedev.gui.common.CustomButton;
-import us.whitedev.gui.common.RenderUtils;
-import us.whitedev.gui.screen.AltManagerScreen;
-import us.whitedev.proxy.RedSignalProxy;
+import us.rin.RedSignalClient;
+import us.rin.gui.clickgui.ClickGui;
+import us.rin.gui.clickgui.components.WelcomeComponent;
+import us.rin.gui.common.CustomUi;
+import us.rin.gui.common.CustomButton;
+import us.rin.gui.common.RenderUtils;
+import us.rin.gui.screen.AltManagerScreen;
+import us.rin.proxy.RedSignalProxy;
 
 @OnlyIn(Dist.CLIENT)
 public class TitleScreen extends Screen {
