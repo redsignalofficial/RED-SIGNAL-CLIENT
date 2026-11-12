@@ -62,12 +62,12 @@ dependencies {
     compileOnly 'net.java.dev.jna:jna:5.13.0'
     compileOnly 'net.java.dev.jna:jna-platform:5.13.0'
 
-    // ViaVersion (supports 1.21+ and 26.1.2 protocols)
-    compileOnly 'com.viaversion:viaversion-api:5.12.3'
-    compileOnly 'com.viaversion:viaversion:5.12.3'
-    compileOnly 'com.viaversion:viabackwards-common:5.12.3'
-    compileOnly 'com.viaversion:viabackwards:5.12.3'
-    compileOnly 'com.viaversion:viarewind-common:4.2.1'
+    // ViaVersion (supports 1.21+ and 26.1.2)
+    compileOnly 'com.viaversion:viaversion-api:5.12.2'
+    compileOnly 'com.viaversion:viaversion:5.12.2'
+    compileOnly 'com.viaversion:viabackwards-common:5.12.2'
+    compileOnly 'com.viaversion:viabackwards:5.12.2'
+    compileOnly 'com.viaversion:viarewind-common:4.2.0'
 
     // MCProtocolLib (steveice10)
     compileOnly('com.github.steveice10:MCProtocolLib:1.20-1') {
