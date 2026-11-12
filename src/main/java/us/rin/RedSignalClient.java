@@ -126,7 +126,11 @@ public class RedSignalClient {
         );
         registerCustomImages();
 
-        new DiscordRP().runDiscordRP();
+        try {
+            new DiscordRP().runDiscordRP();
+        } catch (Throwable t) {
+            Minecraft.LOGGER.warn("DiscordRP disabled: " + t.getMessage());
+        }
 
         Minecraft.LOGGER.info("Loading visuals...");
         clientConfigHelper.readClientConfig();
@@ -143,7 +147,11 @@ public class RedSignalClient {
         Minecraft.LOGGER.info("Loading favorites...");
         FavoritesManager.load();
         Minecraft.LOGGER.info("Running JavaFx Fixer...");
-        FxFixer.runFxFixer();
+        try {
+            FxFixer.runFxFixer();
+        } catch (Throwable t) {
+            Minecraft.LOGGER.warn("JavaFX Fixer skipped: " + t.getMessage());
+        }
     }
 
     private void registerCustomImages() {

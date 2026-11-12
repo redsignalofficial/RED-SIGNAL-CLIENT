@@ -26,8 +26,10 @@ public final class DiscordRP implements ReadyCallback {
             this.init();
             this.startTask();
             DiscordRPC.discordUpdatePresence(this.richPresence);
-        }catch (Exception e){
-            System.out.println("Failed to initialize DiscordRichPresence API.");
+        } catch (Throwable t) {
+            System.out.println("Failed to initialize DiscordRichPresence API: " + t.getMessage());
+            rpSwitch = false;
+            enabled = false;
         }
     }
 
@@ -36,27 +38,36 @@ public final class DiscordRP implements ReadyCallback {
     }
 
     private void init() {
-        DiscordEventHandlers handlers = (new DiscordEventHandlers.Builder()).setReadyEventHandler((user) -> System.out.printf("Connected to %s#%s (%s)%n", user.username, user.discriminator, user.userId))
-                .build();
-        DiscordRPC.discordInitialize("965944857870868480", handlers, true);
-
+        try {
+            DiscordEventHandlers handlers = (new DiscordEventHandlers.Builder()).setReadyEventHandler((user) -> System.out.printf("Connected to %s#%s (%s)%n", user.username, user.discriminator, user.userId))
+                    .build();
+            DiscordRPC.discordInitialize("965944857870868480", handlers, true);
+        } catch (Throwable t) {
+            rpSwitch = false;
+            enabled = false;
+        }
     }
 
     public void startTask() {
         Executors.newSingleThreadScheduledExecutor().scheduleWithFixedDelay(() -> {
-            if (rpSwitch) {
-                if (!enabled) {
-                    DiscordEventHandlers handlers = (new DiscordEventHandlers.Builder()).setReadyEventHandler((user) -> System.out.printf("Connected to %s#%s (%s)%n", user.username, user.discriminator, user.userId))
-                            .build();
-                    DiscordRPC.discordInitialize("965944857870868480", handlers, true);
-                    enabled = true;
-                }
+            try {
+                if (rpSwitch) {
+                    if (!enabled) {
+                        DiscordEventHandlers handlers = (new DiscordEventHandlers.Builder()).setReadyEventHandler((user) -> System.out.printf("Connected to %s#%s (%s)%n", user.username, user.discriminator, user.userId))
+                                .build();
+                        DiscordRPC.discordInitialize("965944857870868480", handlers, true);
+                        enabled = true;
+                    }
 
-                this.richPresence.details = mc.player == null ? "Disconnected" : "Connected";
-                this.richPresence.state = "Discord: https://discord.gg/WK5vaag3hh";
-                DiscordRPC.discordUpdatePresence(this.richPresence);
-            } else {
-                DiscordRPC.discordShutdown();
+                    this.richPresence.details = mc.player == null ? "Disconnected" : "Connected";
+                    this.richPresence.state = "Discord: https://discord.gg/WK5vaag3hh";
+                    DiscordRPC.discordUpdatePresence(this.richPresence);
+                } else {
+                    DiscordRPC.discordShutdown();
+                    enabled = false;
+                }
+            } catch (Throwable ignored) {
+                rpSwitch = false;
                 enabled = false;
             }
         }, 10L, 10L, TimeUnit.SECONDS);

@@ -23,8 +23,8 @@ public class FxFixer extends Application {
         Thread thread = new Thread(() -> {
             try {
                 launch();
-            } catch (IllegalStateException e) {
-                e.printStackTrace();
+            } catch (Throwable e) {
+                System.out.println("JavaFX not supported on this platform: " + e.getMessage());
             }
         });
         thread.setDaemon(true);
