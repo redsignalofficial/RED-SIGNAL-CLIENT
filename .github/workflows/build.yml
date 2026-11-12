@@ -65,7 +65,13 @@ jobs:
                       fn.startswith('linux/') or
                       fn.startswith('darwin/') or
                       fn.startswith('win-x64/') or
-                      fn.startswith('win-x86/')):
+                      fn.startswith('win-x86/') or
+                      fn.startswith('io/netty/') or
+                      fn.startswith('com/google/') or
+                      fn.startswith('com/sun/') or
+                      fn.startswith('META-INF/native/') or
+                      fn.startswith('META-INF/native-image/') or
+                      fn.startswith('META-INF/io.netty.')):
                       continue
                   z_out.writestr(item, z_in.read(fn))
 
