@@ -211,7 +211,6 @@ public final class Protocol1_20_2To1_20 extends BackwardsProtocol<ClientboundPac
         }
     }
 
-    @Override
     protected void registerConfigurationChangeHandlers() {
         // Don't register them in the transitioning protocol
     }
