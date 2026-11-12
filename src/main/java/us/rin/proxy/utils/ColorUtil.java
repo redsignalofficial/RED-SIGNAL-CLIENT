@@ -15,12 +15,9 @@ public class ColorUtil {
 
     public static void sendMsg(String message) {
         if (Minecraft.getInstance().player == null) return;
-
-        String json = GsonComponentSerializer.gson().serialize(miniMessage.deserialize(message));
-
-        net.minecraft.network.chat.Component component =
-                net.minecraft.network.chat.Component.Serializer.fromJson(json);
-
-        Minecraft.getInstance().player.sendSystemMessage(component);
+        try {
+            new us.rin.helpers.MessageHelper().sendMessage(message, false);
+        } catch (Throwable ignored) {
+        }
     }
 }

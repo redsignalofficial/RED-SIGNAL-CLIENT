@@ -62,8 +62,28 @@ public class MessageHelper {
     }
 
     private Component serializer(String text) {
-        String json = GsonComponentSerializer.gson().serialize(miniMessage.deserialize(text));
-        return net.minecraft.network.chat.Component.Serializer.fromJson(json);
+        try {
+            String json = GsonComponentSerializer.gson().serialize(miniMessage.deserialize(text));
+            try {
+                Class<?> serializerClass = Class.forName("net.minecraft.network.chat.Component$Serializer");
+                java.lang.reflect.Method m = serializerClass.getMethod("fromJson", String.class);
+                return (Component) m.invoke(null, json);
+            } catch (Throwable t) {
+                try {
+                    java.lang.reflect.Method literalMethod = Component.class.getMethod("literal", String.class);
+                    String plain = miniMessage.stripTags(text);
+                    return (Component) literalMethod.invoke(null, plain);
+                } catch (Throwable t2) {
+                    return Component.nullToEmpty(text);
+                }
+            }
+        } catch (Throwable t) {
+            try {
+                return Component.literal(text);
+            } catch (Throwable ignored) {
+                return Component.nullToEmpty(text);
+            }
+        }
     }
 
     private String getGuiColor() {
