@@ -85,7 +85,7 @@ public final class CustomUi {
         RenderUtils.drawGradientRect(pose, 0, (int) by, width, halfH, b0, b0, b2, b2);
         RenderUtils.drawGradientRect(pose, 0, (int) by + halfH, width, halfH, b2, b2, b0, b0);
 
-        int noise = 110;
+        int noise = 20;
         RenderSystem.setShader(GameRenderer::getPositionColorShader);
         BufferBuilder noiseBuffer = Tesselator.getInstance().getBuilder();
         noiseBuffer.begin(VertexFormat.Mode.TRIANGLES, DefaultVertexFormat.POSITION_COLOR);
@@ -134,7 +134,7 @@ public final class CustomUi {
         RenderUtils.drawCircle(pose, gx2, gy2, 120, glow2);
 
         long t = Util.getMillis();
-        int noise = 110;
+        int noise = 20;
         for (int i = 0; i < noise; i++) {
             int h = (int) (t / 250L) + i * 9973;
             float rx = (float) ((h * 1103515245L + 12345L) & 0x7fffffff) / 2147483647f;
